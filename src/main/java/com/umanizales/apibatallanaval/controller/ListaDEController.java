@@ -29,7 +29,8 @@ public class ListaDEController {
         return listaDEService.adicionarDistribucionBarco(distribucion);
     }
 
-
+    @PostMapping
+    public @
 
 
 }
