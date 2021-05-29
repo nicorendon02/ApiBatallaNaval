@@ -28,7 +28,7 @@ public class UsuarioService {
         {
             Usuario usuarioGuardado= usuarioRepository.save(usuario);
             return new ResponseEntity<>(new RespuestaDTO("Exitoso",
-                   usuarioGuardado,null), HttpStatus.OK);
+                    usuarioGuardado,null), HttpStatus.OK);
         }
         catch(Exception ex)
         {

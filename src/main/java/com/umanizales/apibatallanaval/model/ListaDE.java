@@ -1,5 +1,6 @@
 package com.umanizales.apibatallanaval.model;
 
+import com.umanizales.apibatallanaval.model.dto.CoordenadaDTO;
 import com.umanizales.apibatallanaval.model.dto.DistribucionBarcoDTO;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -15,7 +16,7 @@ public class ListaDE implements Serializable {
     private NodoDE cabeza;
     private int cont;
 
-    public void adicionarNodoDE(Object dato){
+    public void adicionarNodo(Object dato){
         if(cabeza == null)
         {
             cabeza = new NodoDE(dato);
@@ -35,58 +36,45 @@ public class ListaDE implements Serializable {
         cont++;
     }
 
-    public void adicionarNodoDEAlInicio(Object dato)
-    {
-        if(cabeza ==null)
+    public void adicionarNodoAlInicio(Object dato){
+        if(cabeza == null)
         {
-            cabeza = new NodoDE(dato);
-            cont++;
+
         }
-        else
-        {
-            NodoDE temp = new NodoDE(dato);
-            temp.setSiguiente(cabeza);
-            cabeza=temp;
-            cont++;
-        }
+
     }
 
-    public String listadoNodoDEs()
+    public ListaDE clonarLista()
     {
-        String listado="";
-        NodoDE temp=cabeza;
+        ListaDE listaCopia= new ListaDE();
+        NodoDE temp = cabeza;
         while(temp!=null)
         {
-            listado = listado + temp.getDato();
-            temp = temp.getSiguiente();
+            listaCopia.adicionarNodo(temp.getDato());
+            temp= temp.getSiguiente();
         }
-
-        return listado;
+        return listaCopia;
     }
 
-    public int getCont() {
-        return cont;
-    }
-
-    public Object encontrarDatoxCodigo(String codigo)
+    public boolean validarExistenciaCoordenadas(CoordenadaDTO[] coordenadas)
     {
         if(cabeza !=null)
         {
-            NodoDE temp=cabeza;
-            while(temp !=null)
+            NodoDE temp = cabeza;
+            while(temp != null)
             {
-                if(temp.getDato().equals(codigo))
+                for(CoordenadaDTO coord: coordenadas)
                 {
-                    return temp.getDato();
+                    if(((DistribucionBarcoDTO) temp.getDato()).validarExistenciaCoordenada(coord))
+                    {
+                        return true;
+                    }
                 }
-                temp = temp.getSiguiente();
+                temp= temp.getSiguiente();
             }
         }
-        return null;
+        return false;
     }
 
 
 }
-
-
-

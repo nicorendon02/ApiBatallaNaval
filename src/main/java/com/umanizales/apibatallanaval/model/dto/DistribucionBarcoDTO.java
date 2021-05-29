@@ -17,6 +17,7 @@ public class DistribucionBarcoDTO implements Serializable {
     public DistribucionBarcoDTO(Barco barco) {
         this.barco = barco;
         this.estado="INTACTO";
+
     }
 
     public void definirUbicacion(int x, int y, byte orientacion)
@@ -35,5 +36,42 @@ public class DistribucionBarcoDTO implements Serializable {
                 y++;
             }
         }
+    }
+
+    public void definirUbicacion(CoordenadaDTO[] coordenadas)
+    {
+        this.casillas= coordenadas;
+    }
+
+    public boolean validarExistenciaCoordenada(CoordenadaDTO coordenada){
+        if(casillas!=null) {
+            for (CoordenadaDTO coord : casillas) {
+                if(coord.equals(coordenada))
+                {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    public CoordenadaDTO[] sugerirUbicacion(int x, int y, byte orientacion)
+    {
+        CoordenadaDTO[] casillasSugeridas = new CoordenadaDTO[barco.getNumeroCasillas()];
+
+        for(int i=0; i < casillasSugeridas.length;i++)
+        {
+            //TODO Verificar que la coordenada este libre
+            casillasSugeridas[i]= new CoordenadaDTO(x,y,false);
+            if(orientacion==1)//Horizontal
+            {
+                x++;
+            }
+            else //Vertical
+            {
+                y++;
+            }
+        }
+        return casillasSugeridas;
     }
 }
