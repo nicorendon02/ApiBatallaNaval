@@ -26,7 +26,7 @@ public class DistribucionBarcoDTO implements Serializable {
         return true;   // TERMINAR!!!
     }
 
-    public boolean validarExistenciaCoordenada(CoordenadaDTO[] coordenada)
+    public boolean validarExistenciaCoordenada(CoordenadaDTO coordenada)
     {
         if(casillas!=null) {
             for (CoordenadaDTO coord : casillas) {

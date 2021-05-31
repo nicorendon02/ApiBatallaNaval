@@ -16,6 +16,23 @@ public class ListaDE implements Serializable {
     private NodoDE cabeza;
     private int cont;
 
+    public int contarNodos()
+    {
+        if (cabeza == null){
+            return 0;
+        }
+        else
+        {
+            int cont = 1;
+            NodoDE temp = cabeza;
+            while (temp.getSiguiente() != null){
+                cont++;
+                temp = temp.getSiguiente();
+            }
+            return cont;
+        }
+    }
+
     public void adicionarNodo(Object dato){
         if(cabeza == null)
         {
@@ -36,25 +53,19 @@ public class ListaDE implements Serializable {
         cont++;
     }
 
-    public void adicionarNodoAlInicio(Object dato){
+    public void adicionarNodoAlInicio(NodoDE nodo){  // REVISAR ESTE METODO!!!
         if(cabeza == null)
         {
-
+            cabeza = nodo;
         }
-
-    }
-
-    public ListaDE clonarLista()
-    {
-        ListaDE listaCopia= new ListaDE();
-        NodoDE temp = cabeza;
-        while(temp!=null)
+        else
         {
-            listaCopia.adicionarNodo(temp.getDato());
-            temp= temp.getSiguiente();
+            NodoDE temp = cabeza;
+            cabeza = nodo;
+            cabeza.setSiguiente(temp);
         }
-        return listaCopia;
     }
+
 
     public boolean validarExistenciaCoordenadas(CoordenadaDTO[] coordenadas)
     {
@@ -76,5 +87,15 @@ public class ListaDE implements Serializable {
         return false;
     }
 
-
+    public ListaDE clonarLista()
+    {
+        ListaDE listaCopia= new ListaDE();
+        NodoDE temp = cabeza;
+        while(temp!=null)
+        {
+            listaCopia.adicionarNodo(temp.getDato());
+            temp= temp.getSiguiente();
+        }
+        return listaCopia;
+    }
 }
