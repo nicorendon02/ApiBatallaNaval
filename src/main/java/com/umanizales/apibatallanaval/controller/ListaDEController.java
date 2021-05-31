@@ -30,6 +30,9 @@ public class ListaDEController {
     }
 
 
-
-
+    @GetMapping("cont")
+    public @ResponseBody ResponseEntity<Object> contarNodos()
+    {
+        return listaDEService.contarNodos();
+    }
 }

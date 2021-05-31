@@ -2,6 +2,7 @@ package com.umanizales.apibatallanaval.service;
 
 import com.umanizales.apibatallanaval.model.ListaDE;
 import com.umanizales.apibatallanaval.model.NodoDE;
+import com.umanizales.apibatallanaval.model.dto.CoordenadaDTO;
 import com.umanizales.apibatallanaval.model.dto.DistribucionBarcoDTO;
 import com.umanizales.apibatallanaval.model.dto.RespuestaDTO;
 import org.springframework.http.HttpStatus;
@@ -45,7 +46,20 @@ public class ListaDEService {
         return listado;
     }
 
+    public ResponseEntity<Object> validarExistenciaCoordenadas(CoordenadaDTO[] coordenadas)
+    {
+        return new ResponseEntity<>(new RespuestaDTO("Exitoso",
+                listaBarcos.validarExistenciaCoordenadas(coordenadas),null), HttpStatus.OK);
+    }
 
+    public ResponseEntity<Object> contarNodos()
+    {
+        return new ResponseEntity<>(new RespuestaDTO("Exitoso",
+                listaBarcos.getCont(),null), HttpStatus.OK);
+    }
 
-
+    public int obtenerContadorLista()
+    {
+        return listaBarcos.getCont();
+    }
 }
