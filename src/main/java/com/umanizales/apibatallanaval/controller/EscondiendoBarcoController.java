@@ -15,7 +15,8 @@ import org.springframework.web.bind.annotation.*;
 public class EscondiendoBarcoController {
     private TableroService tableroService;
     @Autowired
-    public EscondiendoBarcoController(TableroService tableroService) {
+    public EscondiendoBarcoController(TableroService tableroService)
+    {
         this.tableroService = tableroService;
     }
 
@@ -27,12 +28,14 @@ public class EscondiendoBarcoController {
 
     @GetMapping(path="ver_tablero")
     public @ResponseBody ResponseEntity<Object> visualizarTablero()
+
     {
         return tableroService.visualizarTablero();
     }
 
     @PostMapping(path="esconderbarco")
-    public @ResponseBody ResponseEntity<Object> esconderBarco(@RequestBody RequestBarcoCoordenadaDTO request)
+    public @ResponseBody ResponseEntity<Object> esconderBarco
+            (@RequestBody RequestBarcoCoordenadaDTO request)
     {
         return tableroService.esconderBarco(request.getCodigo(),request.getCoordenada());
     }
