@@ -9,15 +9,16 @@ import java.io.Serializable;
 @Getter
 @Setter
 public class DistribucionBarcoDTO implements Serializable {
-    private Barco barco;
-    private byte orientacion;
-    private String estado;//Tocado, Hundido, Intacto
-    private CoordenadaDTO[] casillas;
+    public CoordenadaDTO[] casillas;
+    public Barco barco;
+    public byte orientacion;
+    public String estado; //Tocado, Hundido, Intacto
 
-    public DistribucionBarcoDTO(Barco barco) {
+    public DistribucionBarcoDTO(CoordenadaDTO[] casillas, Barco barco, byte orientacion, String estado) {
+        this.casillas = casillas;
         this.barco = barco;
-        this.estado="INTACTO";
-
+        this.orientacion = orientacion;
+        this.estado = estado;
     }
 
     public void definirUbicacion(int x, int y, byte orientacion)
