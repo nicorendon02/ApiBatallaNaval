@@ -1,11 +1,11 @@
 package com.umanizales.apibatallanaval.service;
 //Comportamientos
 
-
 import com.umanizales.apibatallanaval.model.dto.CasillaBarco;
 import com.umanizales.apibatallanaval.model.dto.Coordenada;
 import com.umanizales.apibatallanaval.model.dto.RespuestaDTO;
 import com.umanizales.apibatallanaval.model.entities.Barco;
+import com.umanizales.apibatallanaval.service.ListaDEService;
 import com.umanizales.apibatallanaval.utils.Constants;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -15,16 +15,16 @@ import org.springframework.stereotype.Service;
 @Service  //Application 1 mismo tablero para los n usuarios
 public class TableroService {
     private CasillaBarco[][] tableroBarcos;
-    private int contadorAciertos=0;
-    private int contadorErrores=0;
-    private int contEscondidos=0;
-    private boolean estadoJuego=false;
+    private int contadorAciertos = 0;
+    private int contadorErrores = 0;
+    private int contEscondidos = 0;
+    private boolean estadoJuego = false;
 
-    private ListaDEService ListaDEService;
+    public ListaDEService listaDEService;
 
     @Autowired
-    public TableroService(ListaDEService ListaDEService) {
-        this.ListaDEService = ListaDEService;
+    public TableroService(ListaDEService listaDEService) {
+        this.listaDEService = listaDEService;
     }
 
     public ResponseEntity<Object> inicializarTablero(int filas, int cols)
@@ -51,9 +51,9 @@ public class TableroService {
                             Constants.ERROR_ROWS_COLS_POSITIVE)
                     , HttpStatus.CONFLICT);
         }
-        ///buscar el Barco en la lista
-        Barco BarcoEsconder= ListaDEService.encontrarBarcoxCodigo(codigo);
-        if(BarcoEsconder!=null)
+        ///buscar el barco en la lista
+        Barco barcoEsconder= listaDEService.encontrarBarcoxCodigo(codigo);
+        if(barcoEsconder!=null)
         {
             //Validar coordena y espacio este libre
             if(validarCoordenada(coordenada))
@@ -62,9 +62,9 @@ public class TableroService {
                 if(tableroBarcos[coordenada.getFila()][coordenada.getCol()]==null)
                 {
                     tableroBarcos[coordenada.getFila()][coordenada.getCol()]=
-                            new CasillaBarco(BarcoEsconder,false);
+                            new CasillaBarco(barcoEsconder,false);
                     contEscondidos++;
-                    if(contEscondidos == ListaDEService.contarNodos())
+                    if(contEscondidos == listaDEService.contarNodos())
                     {
                         estadoJuego=true;
                     }
@@ -133,10 +133,10 @@ public class TableroService {
             if(validarCoordenada(coord))
             {
                 if(tableroBarcos[coord.getFila()][coord.getCol()]!=null
-                && !tableroBarcos[coord.getFila()][coord.getCol()].isMarcada())
+                        && !tableroBarcos[coord.getFila()][coord.getCol()].isMarcada())
                 {
-                    //eliminar el Barco de la lista
-                    //ListaDEService.eliminarBarco();
+                    //eliminar el barco de la lista
+                    //listaDEService.eliminarBarco();
                     tableroBarcos[coord.getFila()][coord.getCol()].setMarcada(true);
                     contadorAciertos++;
                     return this.validarEstadoJuego(true,
@@ -167,12 +167,12 @@ public class TableroService {
     }
 
 
-    private ResponseEntity<Object> validarEstadoJuego(boolean exito, Barco Barco)
+    private ResponseEntity<Object> validarEstadoJuego(boolean exito, Barco barco)
     {
         if(exito)
         {
             //Acabó de acertar
-            if(contadorAciertos== ListaDEService.contarNodos())
+            if(contadorAciertos == listaDEService.contarNodos())
             {
                 estadoJuego=false;
                 tableroBarcos=null;
@@ -188,7 +188,7 @@ public class TableroService {
             {
                 return new ResponseEntity<>(
                         new RespuestaDTO(Constants.SUCCESSFUL,
-                                Barco
+                                barco
                                 ,null),
                         HttpStatus.OK
                 );
@@ -197,7 +197,7 @@ public class TableroService {
         else
         {
             //acabó de fallas
-            if(contadorErrores >= this.ListaDEService.contarNodos() * Constants.PERCENTAGE_ERROR_GAME)
+            if(contadorErrores >= this.listaDEService.contarNodos() * Constants.PERCENTAGE_ERROR_GAME)
             {
                 estadoJuego=false;
                 tableroBarcos=null;

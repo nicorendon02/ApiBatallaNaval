@@ -98,4 +98,21 @@ public class ListaDE implements Serializable {
         }
         return listaCopia;
     }
+
+    public Object encontrarDatoxCodigo(String codigo)
+    {
+        if(cabeza !=null)
+        {
+            NodoDE temp=cabeza;
+            while(temp !=null)
+            {
+                if(temp.getDato().equals(codigo))
+                {
+                    return temp.getDato();
+                }
+                temp = temp.getSiguiente();
+            }
+        }
+        return null;
+    }
 }

@@ -1,27 +1,29 @@
 package com.umanizales.apibatallanaval.controller;
 
-
 import com.umanizales.apibatallanaval.model.dto.Coordenada;
 import com.umanizales.apibatallanaval.model.dto.RequestBarcoCoordenadaDTO;
 import com.umanizales.apibatallanaval.service.TableroService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+
 @RestController
-@RequestMapping(path = "escondetubarco")
+@RequestMapping(path = "/escondetubarco")
 @Validated
-public class EscondiendoBarcoController {
+public class TableroController {
     private TableroService tableroService;
     @Autowired
-    public EscondiendoBarcoController(TableroService tableroService)
+    public TableroController(TableroService tableroService)
     {
         this.tableroService = tableroService;
     }
 
     @PostMapping(path = "iniciar_tablero")
-    public @ResponseBody  ResponseEntity<Object> iniciarTablero(@RequestBody Coordenada coordenada)
+    public @ResponseBody
+    ResponseEntity<Object> iniciarTablero(@RequestBody Coordenada coordenada)
     {
         return tableroService.inicializarTablero(coordenada.getFila(), coordenada.getCol());
     }

@@ -5,6 +5,7 @@ import com.umanizales.apibatallanaval.model.NodoDE;
 import com.umanizales.apibatallanaval.model.dto.CoordenadaDTO;
 import com.umanizales.apibatallanaval.model.dto.DistribucionBarcoDTO;
 import com.umanizales.apibatallanaval.model.dto.RespuestaDTO;
+import com.umanizales.apibatallanaval.model.entities.Barco;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -61,5 +62,11 @@ public class ListaDEService {
     public int obtenerContadorLista()
     {
         return listaBarcos.getCont();
+    }
+
+    public Barco encontrarBarcoxCodigo(String codigo)
+
+    {
+        return (Barco) this.listaBarcos.encontrarDatoxCodigo(codigo);
     }
 }
