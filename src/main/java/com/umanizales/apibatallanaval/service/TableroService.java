@@ -1,6 +1,7 @@
 package com.umanizales.apibatallanaval.service;
 //Comportamientos
 
+import com.umanizales.apibatallanaval.model.ListaDE;
 import com.umanizales.apibatallanaval.model.dto.CasillaBarco;
 import com.umanizales.apibatallanaval.model.dto.Coordenada;
 import com.umanizales.apibatallanaval.model.dto.RespuestaDTO;
@@ -21,6 +22,7 @@ public class TableroService {
     private boolean estadoJuego = false;
 
     public ListaDEService listaDEService;
+    public ListaDE listaDE;
 
     @Autowired
     public TableroService(ListaDEService listaDEService) {
@@ -64,7 +66,7 @@ public class TableroService {
                     tableroBarcos[coordenada.getFila()][coordenada.getCol()]=
                             new CasillaBarco(barcoEsconder,false);
                     contEscondidos++;
-                    if(contEscondidos == listaDEService.contarNodos())
+                    if(contEscondidos == listaDE.contarNodos())
                     {
                         estadoJuego=true;
                     }
@@ -172,7 +174,7 @@ public class TableroService {
         if(exito)
         {
             //Acabó de acertar
-            if(contadorAciertos == listaDEService.contarNodos())
+            if(contadorAciertos == listaDE.contarNodos())
             {
                 estadoJuego=false;
                 tableroBarcos=null;
@@ -197,7 +199,7 @@ public class TableroService {
         else
         {
             //acabó de fallas
-            if(contadorErrores >= this.listaDEService.contarNodos() * Constants.PERCENTAGE_ERROR_GAME)
+            if(contadorErrores >= this.listaDE.contarNodos() * Constants.PERCENTAGE_ERROR_GAME)
             {
                 estadoJuego=false;
                 tableroBarcos=null;
