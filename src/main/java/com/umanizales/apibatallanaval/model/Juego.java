@@ -47,7 +47,16 @@ public class Juego {
 
     public boolean disparar(int x, int y)
     {
+<<<<<<< Updated upstream
        // CoordenadaDTO coordenada = new CoordenadaDTO(x,y,true);
+=======
+<<<<<<< Updated upstream
+=======
+        CoordenadaDTO coordenada = new CoordenadaDTO(x,y,true);
+        //CoordenadaDTO coordenada = new CoordenadaDTO(x,y,true);
+        if (coordenada )
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
         return false;
     }
 
