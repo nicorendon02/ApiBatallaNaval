@@ -18,15 +18,16 @@ public class Tablero {
     public boolean estadoTablero;
     public List<CoordenadaDTO> disparosRecibidos;
 
+
+
     public Tablero(int id, int cols, int filas, Usuario jugador,
-                   ListaDE listaBarco, boolean estadoTablero, List<CoordenadaDTO> disparosRecibidos) {
+                   ListaDE listaBarco) {
         this.id = id;
         this.cols = cols;
         this.filas = filas;
         this.jugador = jugador;
         this.listaBarco = listaBarco;
-        this.estadoTablero = estadoTablero;
-        this.disparosRecibidos = disparosRecibidos;
+
     }
 
     public String validarDisparo(int x, int y) // terminar!!!

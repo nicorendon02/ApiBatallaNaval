@@ -10,7 +10,7 @@ import lombok.Setter;
 public class Juego {
     public int id;
     public Tablero tableroJugador1;
-    public Tablero TableroJugador2;
+    public Tablero tableroJugador2;
     public int numeroBarcos; // preguntar cual es este tipo de dato ???
     public byte turno;
     public int aciertosJug1;
@@ -23,23 +23,23 @@ public class Juego {
     {
         this.id = id;
         this.numeroBarcos = numeroBarcos;
-
+        tableroJugador1 = new Tablero(id,10,10,jugador1, listaDE.clonarLista());
+        tableroJugador2 = new Tablero(id,10,10,jugador2, listaDE.clonarLista());
     }
 
     public void crearTableros() // terminar!!!
     {
         if (numeroBarcos > 0 && numeroBarcos <= 9)
         {
-
-
+            // preguntar
         }
         if (numeroBarcos > 9 && numeroBarcos <= 20)
         {
-
+            // preguntar
         }
         if (numeroBarcos > 20)
         {
-
+            // preguntar
         }
     }
 

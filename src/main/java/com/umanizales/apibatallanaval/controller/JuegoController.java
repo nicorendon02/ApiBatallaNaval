@@ -29,11 +29,10 @@ public class JuegoController {
         this.juegoService = juegoService;
     }
 
-    @PostMapping
-    public ResponseEntity<Object> crearJuego()// solicito datos para crear juego
+    @PostMapping(path = "/crear")
+    public @ResponseBody ResponseEntity<Object> crearJuego(@RequestBody RequestJuegoDTO juegoDTO)
     {
-        // llamar al servicio que crea juego
-        return null;
+        return juegoService.crearJuego(juegoDTO.getUsuario1(),juegoDTO.getUsuario2());
     }
 
     @PostMapping(path = "/validar")
@@ -48,12 +47,5 @@ public class JuegoController {
     {
         return listaDEService.visualizarListaDE();
     }
-
-    @PostMapping(path = "/crear")
-    public @ResponseBody ResponseEntity<Object> crearJuego(@RequestBody RequestJuegoDTO juegoDTO)
-    {
-        return juegoService.crearJuego(juegoDTO.getUsuario1(),juegoDTO.getUsuario2());
-    }
+    
 }
-
-
