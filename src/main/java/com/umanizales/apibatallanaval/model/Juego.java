@@ -19,30 +19,27 @@ public class Juego {
     public ListaDE listaDE;
     public DistribucionBarcoDTO distribucionBarcoDTO;
 
-    public Juego(int id, Tablero tableroJugador1, Tablero tableroJugador2,
-                 int numeroBarcos, byte turno, int aciertosJug1, int aciertosJug2) {
+    public Juego(int id, Usuario jugador1, Usuario jugador2, int numeroBarcos)
+    {
         this.id = id;
-        this.tableroJugador1 = tableroJugador1;
-        TableroJugador2 = tableroJugador2;
         this.numeroBarcos = numeroBarcos;
-        this.turno = turno;
-        this.aciertosJug1 = aciertosJug1;
-        this.aciertosJug2 = aciertosJug2;
+
     }
 
     public void crearTableros() // terminar!!!
     {
         if (numeroBarcos > 0 && numeroBarcos <= 9)
         {
-            // crear tablero aqui
+
+
         }
         if (numeroBarcos > 9 && numeroBarcos <= 20)
         {
-            // crear tablero aqui
+
         }
         if (numeroBarcos > 20)
         {
-            // crear tablero aqui
+
         }
     }
 
