@@ -47,5 +47,5 @@ public class JuegoController {
     {
         return listaDEService.visualizarListaDE();
     }
-    
+
 }

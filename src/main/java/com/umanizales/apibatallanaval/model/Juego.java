@@ -1,5 +1,6 @@
 package com.umanizales.apibatallanaval.model;
 
+import com.umanizales.apibatallanaval.model.dto.CoordenadaDTO;
 import com.umanizales.apibatallanaval.model.dto.DistribucionBarcoDTO;
 import com.umanizales.apibatallanaval.model.entities.Usuario;
 import lombok.Getter;
@@ -18,6 +19,7 @@ public class Juego {
 
     public ListaDE listaDE;
     public DistribucionBarcoDTO distribucionBarcoDTO;
+    public CoordenadaDTO coordenadaDTO;
 
     public Juego(int id, Usuario jugador1, Usuario jugador2, int numeroBarcos)
     {
@@ -45,13 +47,14 @@ public class Juego {
 
     public boolean disparar(int x, int y)
     {
+       // CoordenadaDTO coordenada = new CoordenadaDTO(x,y,true);
         return false;
     }
 
-    public String validarDisparo(int x, int y) // preguntar parametros de este metodo???
-    {
-        return null;
-    }
+        public String validarDisparo(int x, int y) // preguntar parametros de este metodo???
+        {
+                return null;
+        }
 
     public Usuario validarGanador() //terminar!!!
     {
