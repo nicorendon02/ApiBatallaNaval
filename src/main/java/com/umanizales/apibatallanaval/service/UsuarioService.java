@@ -41,8 +41,16 @@ public class UsuarioService {
 
     public ResponseEntity<Object> findUsersByRol(short codeRol)
     {
-        return new ResponseEntity<>(new RespuestaDTO("Exitoso",
-                usuarioRepository.obtenerUsuariosPorRol(codeRol),null), HttpStatus.OK);
+        try {
+            return new ResponseEntity<>(new RespuestaDTO("Exitoso",
+                    usuarioRepository.obtenerUsuariosPorRol(codeRol), null), HttpStatus.OK);
+        }
+
+        catch (Exception ex)
+        {
+            return new ResponseEntity<>(new RespuestaDTO("Error",
+                    null, null), HttpStatus.CONFLICT);
+        }
     }
 
     public ResponseEntity<Object> findUsersByMail(String mail)
