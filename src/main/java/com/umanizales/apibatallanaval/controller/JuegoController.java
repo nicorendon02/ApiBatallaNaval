@@ -5,6 +5,8 @@ import com.umanizales.apibatallanaval.model.dto.RequestJuegoDTO;
 import com.umanizales.apibatallanaval.service.JuegoService;
 import com.umanizales.apibatallanaval.service.ListaDEService;
 import com.umanizales.apibatallanaval.service.UsuarioService;
+import com.umanizales.apibatallanaval.repository.UsuarioRepository;
+import com.umanizales.apibatallanaval.model.entities.Usuario;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -20,6 +22,7 @@ public class JuegoController {
     private UsuarioService usuarioService;
     private ListaDEService listaDEService;
     private JuegoService juegoService;
+    private UsuarioRepository usuarioRepository;
 
     @Autowired
     public JuegoController(UsuarioService usuarioService,
@@ -27,12 +30,29 @@ public class JuegoController {
         this.usuarioService = usuarioService;
         this.listaDEService = listaDEService;
         this.juegoService = juegoService;
+        this.usuarioRepository = usuarioRepository;
     }
 
     @PostMapping(path = "/crear")
     public @ResponseBody ResponseEntity<Object> crearJuego(@RequestBody RequestJuegoDTO juegoDTO)
     {
-        return juegoService.crearJuego(juegoDTO.getUsuario1(),juegoDTO.getUsuario2());
+
+        // consulta para saber si usuarios existen
+        String usuario1 = juegoDTO.getUsuario1();
+        String usuario2 = juegoDTO.getUsuario2();
+        RequestJuegoDTO juegoDTO1 = new RequestJuegoDTO();
+        RequestJuegoDTO juegoDTO2 = new RequestJuegoDTO();
+        if (usuarioRepository.obtenerUsuarioPorCorreo(usuario1) == juegoDTO.getUsuario1())
+        {
+
+            juegoDTO1.setUsuario1(juegoDTO.getUsuario1());
+        }
+        if (usuarioRepository.obtenerUsuarioPorCorreo(usuario2) == juegoDTO.getUsuario2())
+        {
+
+            juegoDTO2.setUsuario2(juegoDTO2.getUsuario2());
+        }
+        return juegoService.crearJuego(juegoDTO1.getUsuario1(),juegoDTO2.getUsuario2());
     }
 
     @PostMapping(path = "/validar")
