@@ -9,7 +9,7 @@ import java.io.Serializable;
 @Getter
 @Setter
 public class RequestJuegoDTO implements Serializable {
-    private Usuario usuario1;
-    private Usuario usuario2;
+    private String usuario1;
+    private String usuario2;
     //private int numBarcos;
 }

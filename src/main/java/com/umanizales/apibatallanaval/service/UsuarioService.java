@@ -44,5 +44,21 @@ public class UsuarioService {
         return new ResponseEntity<>(new RespuestaDTO("Exitoso",
                 usuarioRepository.obtenerUsuariosPorRol(codeRol),null), HttpStatus.OK);
     }
+    public ResponseEntity<Object> findUsersByMail(String mail)
+    {
+        try
+        {
+            return new ResponseEntity<>(new RespuestaDTO("Error",
+                    usuarioRepository.obtenerUsuarioPorCorreo(mail),
+                    "Usuario no encontrado en base de datos"), HttpStatus.CONFLICT);
+
+        }
+        catch(Exception ex)
+        {
+            return new ResponseEntity<>(new RespuestaDTO("Exitoso",
+                    null,null),
+                    HttpStatus.OK);
+        }
+    }
 
 }
