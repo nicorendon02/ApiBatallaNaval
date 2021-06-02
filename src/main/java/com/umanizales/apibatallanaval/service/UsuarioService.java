@@ -49,16 +49,16 @@ public class UsuarioService {
     {
         try
         {
-            return new ResponseEntity<>(new RespuestaDTO("Error",
-                    usuarioRepository.obtenerUsuarioPorCorreo(mail),
-                    "Usuario no encontrado en base de datos"), HttpStatus.CONFLICT);
+            return new ResponseEntity<>(new RespuestaDTO("Exitoso",
+                    usuarioRepository.obtenerUsuarioPorCorreo(mail),null),
+                    HttpStatus.OK);
 
         }
         catch(Exception ex)
         {
-            return new ResponseEntity<>(new RespuestaDTO("Exitoso",
-                    null,null),
-                    HttpStatus.OK);
+            return new ResponseEntity<>(new RespuestaDTO("Error",
+                    null,
+                    "Usuario no encontrado en base de datos"), HttpStatus.CONFLICT);
         }
     }
 }
