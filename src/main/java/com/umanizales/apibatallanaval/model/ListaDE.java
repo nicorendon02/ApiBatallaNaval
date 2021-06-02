@@ -1,5 +1,6 @@
 package com.umanizales.apibatallanaval.model;
 
+import com.umanizales.apibatallanaval.model.dto.CoordenadaDTO;
 import com.umanizales.apibatallanaval.model.dto.DistribucionBarcoDTO;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -15,7 +16,24 @@ public class ListaDE implements Serializable {
     private NodoDE cabeza;
     private int cont;
 
-    public void adicionarNodoDE(Object dato){
+    public int contarNodos()
+    {
+        if (cabeza == null){
+            return 0;
+        }
+        else
+        {
+            int cont = 1;
+            NodoDE temp = cabeza;
+            while (temp.getSiguiente() != null){
+                cont++;
+                temp = temp.getSiguiente();
+            }
+            return cont;
+        }
+    }
+
+    public void adicionarNodo(Object dato){
         if(cabeza == null)
         {
             cabeza = new NodoDE(dato);
@@ -35,37 +53,50 @@ public class ListaDE implements Serializable {
         cont++;
     }
 
-    public void adicionarNodoDEAlInicio(Object dato)
-    {
-        if(cabeza ==null)
+    public void adicionarNodoAlInicio(NodoDE nodo){  // REVISAR ESTE METODO!!!
+        if(cabeza == null)
         {
-            cabeza = new NodoDE(dato);
-            cont++;
+            cabeza = nodo;
         }
         else
         {
-            NodoDE temp = new NodoDE(dato);
-            temp.setSiguiente(cabeza);
-            cabeza=temp;
-            cont++;
+            NodoDE temp = cabeza;
+            cabeza = nodo;
+            cabeza.setSiguiente(temp);
         }
     }
 
-    public String listadoNodoDEs()
+
+    public boolean validarExistenciaCoordenadas(CoordenadaDTO[] coordenadas)
     {
-        String listado="";
-        NodoDE temp=cabeza;
+        if(cabeza !=null)
+        {
+            NodoDE temp = cabeza;
+            while(temp != null)
+            {
+                for(CoordenadaDTO coord: coordenadas)
+                {
+                    if(((DistribucionBarcoDTO) temp.getDato()).validarExistenciaCoordenada(coord))
+                    {
+                        return true;
+                    }
+                }
+                temp= temp.getSiguiente();
+            }
+        }
+        return false;
+    }
+
+    public ListaDE clonarLista()
+    {
+        ListaDE listaCopia= new ListaDE();
+        NodoDE temp = cabeza;
         while(temp!=null)
         {
-            listado = listado + temp.getDato();
-            temp = temp.getSiguiente();
+            listaCopia.adicionarNodo(temp.getDato());
+            temp= temp.getSiguiente();
         }
-
-        return listado;
-    }
-
-    public int getCont() {
-        return cont;
+        return listaCopia;
     }
 
     public Object encontrarDatoxCodigo(String codigo)
@@ -84,9 +115,4 @@ public class ListaDE implements Serializable {
         }
         return null;
     }
-
-
 }
-
-
-

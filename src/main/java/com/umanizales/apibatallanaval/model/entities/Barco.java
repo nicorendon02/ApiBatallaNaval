@@ -6,7 +6,7 @@ import javax.persistence.*;
 public class Barco {
     private int id;
     private String nombre;
-    private short numeroCasillas;
+    private byte numeroCasillas;
 
     @Id
     @Column(name = "id", nullable = false)
@@ -36,7 +36,7 @@ public class Barco {
     }
 
     public void setNumeroCasillas(short numeroCasillas) {
-        this.numeroCasillas = numeroCasillas;
+        this.numeroCasillas = (byte) numeroCasillas;
     }
 
     @Override

@@ -29,10 +29,15 @@ public class UsuarioController {
         return usuarioService.create(usuario);
     }
 
-    @GetMapping(path = "{codeRol}")
+    @GetMapping(path = "userbyrol/{codeRol}")
     public @ResponseBody ResponseEntity<Object> findUsersByCodeRol(@PathVariable("codeRol") short codeRol)
     {
         return usuarioService.findUsersByRol(codeRol);
+    }
+    @GetMapping(path = "userbymail/{mail}")
+    public @ResponseBody ResponseEntity<Object> findUsersByMail(@PathVariable("mail") String mail)
+    {
+        return usuarioService.findUsersByMail(mail);
     }
 
 }

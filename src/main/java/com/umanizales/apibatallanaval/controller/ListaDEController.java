@@ -29,8 +29,10 @@ public class ListaDEController {
         return listaDEService.adicionarDistribucionBarco(distribucion);
     }
 
-    @PostMapping
-    public @
 
-
+    @GetMapping("cont")
+    public @ResponseBody ResponseEntity<Object> contarNodos()
+    {
+        return listaDEService.contarNodos();
+    }
 }
