@@ -44,6 +44,7 @@ public class UsuarioService {
         return new ResponseEntity<>(new RespuestaDTO("Exitoso",
                 usuarioRepository.obtenerUsuariosPorRol(codeRol),null), HttpStatus.OK);
     }
+
     public ResponseEntity<Object> findUsersByMail(String mail)
     {
         try
@@ -60,5 +61,4 @@ public class UsuarioService {
                     HttpStatus.OK);
         }
     }
-
 }

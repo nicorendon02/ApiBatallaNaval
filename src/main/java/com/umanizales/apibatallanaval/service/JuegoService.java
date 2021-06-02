@@ -33,7 +33,7 @@ public class JuegoService {
             // crear el tablero 1 y el tablero 2
             // crear el juego
             // retorno el juego creado
-            juego = new Juego(juego.getId(),jugador1,jugador2,juego.getNumeroBarcos());
+            //juego = new Juego();
             return new ResponseEntity<>(new RespuestaDTO("Juego creado",
                     juego,null), HttpStatus.OK);
         }
