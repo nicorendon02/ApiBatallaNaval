@@ -39,7 +39,7 @@ public class UsuarioService {
     }
 
 
-    public ResponseEntity<Object> findUsersByRol(short codeRol)
+    public ResponseEntity<Object> findUsersByRol(int codeRol)
     {
         try {
             return new ResponseEntity<>(new RespuestaDTO("Exitoso",
