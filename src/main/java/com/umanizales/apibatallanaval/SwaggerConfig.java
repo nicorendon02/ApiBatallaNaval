@@ -32,8 +32,8 @@ public class SwaggerConfig {
                 "Api que permite gestionar todo el backend de el juego Batalla Naval",
                 "1.0",
                 "http://www.umanizales.com/",
-                new Contact("Nicolas Rendon", "https://www.umanizales.edu.co/",
-                        "nrendon87351@umanizales.edu.co"),
+                new Contact("Manuel Bermudez", "https://www.umanizales.edu.co/",
+                        "mabermudez87952@umanizales.edu.co"),
 
                 "LICENSE",
                 "LICENSE URL",
