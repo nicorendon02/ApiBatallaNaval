@@ -66,7 +66,13 @@ public class ListaDEService {
 
     public Barco encontrarBarcoxCodigo(String codigo)
 
+
     {
         return (Barco) this.listaBarcos.encontrarDatoxCodigo(codigo);
+    }
+
+    public ListaDE getListaBarcos()
+    {
+        return listaBarcos;
     }
 }

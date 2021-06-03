@@ -24,23 +24,15 @@ public class Juego {
     public DistribucionBarcoDTO distribucionBarcoDTO;
     public CoordenadaDTO coordenadaDTO;
 
-    public Juego(int id, Tablero tableroJugador1, Tablero tableroJugador2, int numeroBarcos,
-                 byte turno, int aciertosJug1, int aciertosJug2, ListaDE listaDE,
-                 DistribucionBarcoDTO distribucionBarcoDTO, CoordenadaDTO coordenadaDTO)
+    public Juego(int id, Usuario jugador1, Usuario jugador2, ListaDE listaDE)
     {
         this.id = id;
-        this.tableroJugador1 = tableroJugador1;
-        this.tableroJugador2 = tableroJugador2;
-        this.numeroBarcos = numeroBarcos;
-        this.turno = turno;
-        this.aciertosJug1 = aciertosJug1;
-        this.aciertosJug2 = aciertosJug2;
         this.listaDE = listaDE;
-        this.distribucionBarcoDTO = distribucionBarcoDTO;
-        this.coordenadaDTO = coordenadaDTO;
+
+        crearTableros(id,jugador1,jugador2,listaDE.getCont());
     }
 
-    public void crearTableros(Usuario jugador1, Usuario jugador2, int numeroBarcos)
+    public void crearTableros(int id, Usuario jugador1, Usuario jugador2, int numeroBarcos)
     {
         if (numeroBarcos > 0 && numeroBarcos <= 9) {
             tableroJugador1 = new Tablero(id, 10, 10, jugador1, listaDE.clonarLista());
