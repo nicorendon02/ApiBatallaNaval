@@ -50,7 +50,7 @@ public class JuegoController {
             } else {
                 return new ResponseEntity<>(new RespuestaDTO("Error",
                         null,
-                        "El juego no se puede crear porque no hay usuarios correspondientes"),
+                        "Usuarios no corresponden con base de datos"),
                         HttpStatus.CONFLICT);
             }
         }
@@ -71,6 +71,7 @@ public class JuegoController {
 
     @GetMapping(path = "/visualizar")
     public @ResponseBody ResponseEntity<Object> visualizarLista()
+
     {
         return listaDEService.visualizarListaDE();
     }

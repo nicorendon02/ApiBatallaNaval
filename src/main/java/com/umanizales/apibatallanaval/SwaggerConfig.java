@@ -33,7 +33,7 @@ public class SwaggerConfig {
                 "1.0",
                 "http://www.umanizales.com/",
                 new Contact("Nicolas Rendon", "http://www.umanizales.edu.co/",
-                        "nicorendon@umanizales.edu.co"),
+                        "nrendon87351@umanizales.edu.co"),
 
                 "LICENSE",
                 "LICENSE URL",
