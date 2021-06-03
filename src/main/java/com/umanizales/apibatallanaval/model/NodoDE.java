@@ -8,6 +8,7 @@ import java.io.Serializable;
 
 @Getter
 @Setter
+
 public class NodoDE implements Serializable {
     private Object dato;
     private NodoDE siguiente;

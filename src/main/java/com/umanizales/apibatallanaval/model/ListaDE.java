@@ -58,6 +58,7 @@ public class ListaDE implements Serializable {
 
 
 
+
     public String listadoNodoDEs()
     {
         String listado="";
@@ -73,6 +74,11 @@ public class ListaDE implements Serializable {
 
 
 
+
+
+
+
+
     public int getCont() {
         return cont;
     }
@@ -81,6 +87,7 @@ public class ListaDE implements Serializable {
     {
         if(cabeza !=null)
         {
+
             NodoDE temp=cabeza;
             while(temp !=null)
             {

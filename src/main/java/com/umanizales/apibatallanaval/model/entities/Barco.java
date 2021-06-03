@@ -8,6 +8,8 @@ public class Barco {
     private String nombre;
     private short numeroCasillas;
 
+
+
     @Id
     @Column(name = "id", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,6 +21,7 @@ public class Barco {
         this.id = id;
     }
 
+
     @Basic
     @Column(name = "nombre", nullable = false, length = 30)
     public String getNombre() {
@@ -29,6 +32,8 @@ public class Barco {
         this.nombre = nombre;
     }
 
+
+
     @Basic
     @Column(name = "numero_casillas", nullable = false)
     public short getNumeroCasillas() {
@@ -38,6 +43,8 @@ public class Barco {
     public void setNumeroCasillas(short numeroCasillas) {
         this.numeroCasillas = numeroCasillas;
     }
+
+
 
     @Override
     public String toString() {

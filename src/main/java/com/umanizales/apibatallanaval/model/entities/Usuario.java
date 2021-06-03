@@ -74,6 +74,7 @@ public class Usuario {
     @JoinColumn(name = "tipo_usuario", referencedColumnName = "codigo", nullable = false)
     public TipoUsuario getTipoUsuario() {
         return tipoUsuario;
+
     }
 
 
