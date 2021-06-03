@@ -9,6 +9,7 @@ public class Usuario {
     private String contrasenia;
     private TipoUsuario tipoUsuario;
 
+
     @Id
     @Column(name = "id", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,6 +21,9 @@ public class Usuario {
         this.id = id;
     }
 
+
+
+
     @Basic
     @Column(name = "correo", nullable = false, length = 70)
     public String getCorreo() {
@@ -29,6 +33,8 @@ public class Usuario {
     public void setCorreo(String correo) {
         this.correo = correo;
     }
+
+
 
     @Basic
     @Column(name = "contrasenia", nullable = false, length = 10)
@@ -62,11 +68,15 @@ public class Usuario {
         return result;
     }
 
+
+
     @ManyToOne
     @JoinColumn(name = "tipo_usuario", referencedColumnName = "codigo", nullable = false)
     public TipoUsuario getTipoUsuario() {
         return tipoUsuario;
     }
+
+
 
     public void setTipoUsuario(TipoUsuario tipoUsuario) {
         this.tipoUsuario = tipoUsuario;

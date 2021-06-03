@@ -15,6 +15,8 @@ public class ListaDE implements Serializable {
     private NodoDE cabeza;
     private int cont;
 
+
+
     public void adicionarNodoDE(Object dato){
         if(cabeza == null)
         {
@@ -35,6 +37,8 @@ public class ListaDE implements Serializable {
         cont++;
     }
 
+
+
     public void adicionarNodoDEAlInicio(Object dato)
     {
         if(cabeza ==null)
@@ -51,6 +55,9 @@ public class ListaDE implements Serializable {
         }
     }
 
+
+
+
     public String listadoNodoDEs()
     {
         String listado="";
@@ -63,6 +70,8 @@ public class ListaDE implements Serializable {
 
         return listado;
     }
+
+
 
     public int getCont() {
         return cont;
