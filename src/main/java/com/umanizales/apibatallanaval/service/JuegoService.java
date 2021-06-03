@@ -24,7 +24,7 @@ public class JuegoService {
     //private List<Juego> juego;
     private Juego juego;
 
-    public ResponseEntity<Object> crearJuego(String jugador1, String jugador2)
+    public ResponseEntity<Object> crearJuego(Usuario jugador1, Usuario jugador2)
     {
         // validar y crear juego con los 2 tableros
 
@@ -33,7 +33,7 @@ public class JuegoService {
             // crear el tablero 1 y el tablero 2
             // crear el juego
             // retorno el juego creado
-            juego = new Juego(juego.getId(),jugador1,jugador2,juego.getNumeroBarcos());
+            juego = new Juego(1,jugador1,jugador2,listaDEService.getListaBarcos());
             return new ResponseEntity<>(new RespuestaDTO("Juego creado",
                     juego,null), HttpStatus.OK);
         }

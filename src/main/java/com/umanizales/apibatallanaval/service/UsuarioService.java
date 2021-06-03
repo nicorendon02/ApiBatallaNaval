@@ -39,26 +39,34 @@ public class UsuarioService {
     }
 
 
-    public ResponseEntity<Object> findUsersByRol(short codeRol)
+    public ResponseEntity<Object> findUsersByRol(int codeRol)
     {
-        return new ResponseEntity<>(new RespuestaDTO("Exitoso",
-                usuarioRepository.obtenerUsuariosPorRol(codeRol),null), HttpStatus.OK);
+        try {
+            return new ResponseEntity<>(new RespuestaDTO("Exitoso",
+                    usuarioRepository.obtenerUsuariosPorRol(codeRol), null), HttpStatus.OK);
+        }
+
+        catch (Exception ex)
+        {
+            return new ResponseEntity<>(new RespuestaDTO("Error",
+                    null, null), HttpStatus.CONFLICT);
+        }
     }
+
     public ResponseEntity<Object> findUsersByMail(String mail)
     {
         try
         {
-            return new ResponseEntity<>(new RespuestaDTO("Error",
-                    usuarioRepository.obtenerUsuarioPorCorreo(mail),
-                    "Usuario no encontrado en base de datos"), HttpStatus.CONFLICT);
+            return new ResponseEntity<>(new RespuestaDTO("Exitoso",
+                    usuarioRepository.obtenerUsuarioPorCorreo(mail),null),
+                    HttpStatus.OK);
 
         }
         catch(Exception ex)
         {
-            return new ResponseEntity<>(new RespuestaDTO("Exitoso",
-                    null,null),
-                    HttpStatus.OK);
+            return new ResponseEntity<>(new RespuestaDTO("Error",
+                    null,
+                    "Usuario no encontrado en base de datos"), HttpStatus.CONFLICT);
         }
     }
-
 }
