@@ -10,6 +10,8 @@ import java.io.Serializable;
 @Getter
 @Setter
 @AllArgsConstructor
+
+//coord
 public class Coordenada implements Serializable {
     private int fila;
     private int col;
