@@ -14,9 +14,11 @@ public class TipoUsuario {
         return codigo;
     }
 
+
     public void setCodigo(short codigo) {
         this.codigo = codigo;
     }
+
 
     @Basic
     @Column(name = "descripcion", nullable = false, length = 50)
@@ -24,9 +26,11 @@ public class TipoUsuario {
         return descripcion;
     }
 
+
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
+
 
     @Override
     public boolean equals(Object o) {

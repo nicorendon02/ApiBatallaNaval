@@ -20,7 +20,7 @@ public class DistribucionBarcoDTO implements Serializable {
         this.orientacion = orientacion;
         this.estado = estado;
     }
-
+//validaciones de disparos
     public boolean validarDisparo(int x, int y)
     {
         return true;   // TERMINAR!!!
@@ -39,6 +39,7 @@ public class DistribucionBarcoDTO implements Serializable {
         return false;
     }
 
+
     public void definirUbicacion(int x, int y, byte orientacion)
     {
         this.casillas = new CoordenadaDTO[barco.getNumeroCasillas()];
@@ -56,11 +57,13 @@ public class DistribucionBarcoDTO implements Serializable {
             }
         }
     }
+    //def
 
     public void definirUbicacion(CoordenadaDTO[] coordenadas)
     {
         this.casillas= coordenadas;
     }
+
 
 
     public CoordenadaDTO[] sugerirUbicacion(int x, int y, byte orientacion)
@@ -75,6 +78,8 @@ public class DistribucionBarcoDTO implements Serializable {
             {
                 x++;
             }
+
+
             else //Vertical
             {
                 y++;
