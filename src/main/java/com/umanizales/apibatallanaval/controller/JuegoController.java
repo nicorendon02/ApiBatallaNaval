@@ -50,7 +50,7 @@ public class JuegoController {
             } else {
                 return new ResponseEntity<>(new RespuestaDTO("Error",
                         null,
-                        "El juego no se puede crear porque no hay usuarios correspondientes"),
+                        "Los usuarios digitados no se encuentran en BD"),
                         HttpStatus.CONFLICT);
             }
         }

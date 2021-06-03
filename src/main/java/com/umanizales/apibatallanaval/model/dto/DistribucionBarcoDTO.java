@@ -23,7 +23,7 @@ public class DistribucionBarcoDTO implements Serializable {
 
     public boolean validarDisparo(int x, int y)
     {
-        return true;   // TERMINAR!!!
+        return true;
     }
 
     public boolean validarExistenciaCoordenada(CoordenadaDTO coordenada)

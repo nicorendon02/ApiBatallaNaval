@@ -1,6 +1,7 @@
 package com.umanizales.apibatallanaval.service;
 
 import com.umanizales.apibatallanaval.model.Juego;
+import com.umanizales.apibatallanaval.model.Tablero;
 import com.umanizales.apibatallanaval.model.dto.RespuestaDTO;
 import com.umanizales.apibatallanaval.model.entities.Usuario;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +14,7 @@ import java.util.List;
 @Service
 public class JuegoService {
     private ListaDEService listaDEService; //inyecto el servicio de ListaDE
+    private Tablero tablero;
 
 
     // TERMINAR ESTE CONSTRUCTOR!!!
@@ -44,5 +46,4 @@ public class JuegoService {
                     HttpStatus.CONFLICT);
         }
     }
-
 }
