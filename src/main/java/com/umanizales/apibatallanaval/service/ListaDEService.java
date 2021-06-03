@@ -2,6 +2,7 @@ package com.umanizales.apibatallanaval.service;
 
 import com.umanizales.apibatallanaval.model.ListaDE;
 import com.umanizales.apibatallanaval.model.NodoDE;
+import com.umanizales.apibatallanaval.model.dto.CoordenadaDTO;
 import com.umanizales.apibatallanaval.model.dto.DistribucionBarcoDTO;
 import com.umanizales.apibatallanaval.model.dto.RespuestaDTO;
 import com.umanizales.apibatallanaval.model.entities.Barco;
@@ -22,7 +23,7 @@ public class ListaDEService {
 
     public ResponseEntity<Object> adicionarDistribucionBarco(DistribucionBarcoDTO distribucion)
     {
-        listaBarcos.adicionarNodoDE(distribucion);
+        listaBarcos.adicionarNodo(distribucion);
         return new ResponseEntity<>(new RespuestaDTO("Exitoso","Barco adicionado"
                 ,null), HttpStatus.OK);
     }
@@ -45,14 +46,33 @@ public class ListaDEService {
         }
         return listado;
     }
-    public Barco encontrarBarcoxCodigo(String codigo)
+
+    public ResponseEntity<Object> validarExistenciaCoordenadas(CoordenadaDTO[] coordenadas)
     {
-        return (Barco) this.listaBarcos.encontrarDatoxCodigo(codigo);
+        return new ResponseEntity<>(new RespuestaDTO("Exitoso",
+                listaBarcos.validarExistenciaCoordenadas(coordenadas),null), HttpStatus.OK);
     }
 
-    public int contarNodos()
+    public ResponseEntity<Object> contarNodos()
+    {
+        return new ResponseEntity<>(new RespuestaDTO("Exitoso",
+                listaBarcos.getCont(),null), HttpStatus.OK);
+    }
+
+    public int obtenerContadorLista()
     {
         return listaBarcos.getCont();
     }
 
+    public Barco encontrarBarcoxCodigo(String codigo)
+
+
+    {
+        return (Barco) this.listaBarcos.encontrarDatoxCodigo(codigo);
+    }
+
+    public ListaDE getListaBarcos()
+    {
+        return listaBarcos;
+    }
 }

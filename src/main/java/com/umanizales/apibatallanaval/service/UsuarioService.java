@@ -28,7 +28,7 @@ public class UsuarioService {
         {
             Usuario usuarioGuardado= usuarioRepository.save(usuario);
             return new ResponseEntity<>(new RespuestaDTO("Exitoso",
-                   usuarioGuardado,null), HttpStatus.OK);
+                    usuarioGuardado,null), HttpStatus.OK);
         }
         catch(Exception ex)
         {
@@ -39,10 +39,34 @@ public class UsuarioService {
     }
 
 
-    public ResponseEntity<Object> findUsersByRol(short codeRol)
+    public ResponseEntity<Object> findUsersByRol(int codeRol)
     {
-        return new ResponseEntity<>(new RespuestaDTO("Exitoso",
-                usuarioRepository.obtenerUsuariosPorRol(codeRol),null), HttpStatus.OK);
+        try {
+            return new ResponseEntity<>(new RespuestaDTO("Exitoso",
+                    usuarioRepository.obtenerUsuariosPorRol(codeRol), null), HttpStatus.OK);
+        }
+
+        catch (Exception ex)
+        {
+            return new ResponseEntity<>(new RespuestaDTO("Error",
+                    null, null), HttpStatus.CONFLICT);
+        }
     }
 
+    public ResponseEntity<Object> findUsersByMail(String mail)
+    {
+        try
+        {
+            return new ResponseEntity<>(new RespuestaDTO("Exitoso",
+                    usuarioRepository.obtenerUsuarioPorCorreo(mail),null),
+                    HttpStatus.OK);
+
+        }
+        catch(Exception ex)
+        {
+            return new ResponseEntity<>(new RespuestaDTO("Error",
+                    null,
+                    "Usuario no encontrado en base de datos"), HttpStatus.CONFLICT);
+        }
+    }
 }

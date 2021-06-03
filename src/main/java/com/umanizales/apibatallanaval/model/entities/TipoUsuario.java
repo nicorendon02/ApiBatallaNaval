@@ -3,22 +3,20 @@ package com.umanizales.apibatallanaval.model.entities;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "tipo_usuario", schema = "public", catalog = "paseo_perros")
+@Table(name = "tipo_usuario", schema = "public", catalog = "batalla_naval")
 public class TipoUsuario {
-    private short codigo;
+    private int codigo;
     private String descripcion;
 
     @Id
     @Column(name = "codigo", nullable = false)
-    public short getCodigo() {
+    public int getCodigo() {
         return codigo;
     }
 
-
-    public void setCodigo(short codigo) {
+    public void setCodigo(int codigo) {
         this.codigo = codigo;
     }
-
 
     @Basic
     @Column(name = "descripcion", nullable = false, length = 50)
@@ -26,11 +24,9 @@ public class TipoUsuario {
         return descripcion;
     }
 
-
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
-
 
     @Override
     public boolean equals(Object o) {
@@ -51,6 +47,4 @@ public class TipoUsuario {
         result = 31 * result + (descripcion != null ? descripcion.hashCode() : 0);
         return result;
     }
-
-
 }

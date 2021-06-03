@@ -9,36 +9,15 @@ import java.io.Serializable;
 @Getter
 @Setter
 public class DistribucionBarcoDTO implements Serializable {
-    public CoordenadaDTO[] casillas;
-    public Barco barco;
-    public byte orientacion;
-    public String estado; //Tocado, Hundido, Intacto
+    private Barco barco;
+    private byte orientacion;
+    private String estado;//Tocado, Hundido, Intacto
+    private CoordenadaDTO[] casillas;
 
     public DistribucionBarcoDTO(Barco barco) {
-        this.casillas = casillas;
         this.barco = barco;
-        this.orientacion = orientacion;
-        this.estado = estado;
+        this.estado="INTACTO";
     }
-//validaciones de disparos
-    public boolean validarDisparo(int x, int y)
-    {
-        return true;   // TERMINAR!!!
-    }
-
-    public boolean validarExistenciaCoordenada(CoordenadaDTO coordenada)
-    {
-        if(casillas!=null) {
-            for (CoordenadaDTO coord : casillas) {
-                if(coord.equals(coordenada))
-                {
-                    return true;
-                }
-            }
-        }
-        return false;
-    }
-
 
     public void definirUbicacion(int x, int y, byte orientacion)
     {
@@ -56,35 +35,5 @@ public class DistribucionBarcoDTO implements Serializable {
                 y++;
             }
         }
-    }
-    //def
-
-    public void definirUbicacion(CoordenadaDTO[] coordenadas)
-    {
-        this.casillas= coordenadas;
-    }
-
-
-
-    public CoordenadaDTO[] sugerirUbicacion(int x, int y, byte orientacion)
-    {
-        CoordenadaDTO[] casillasSugeridas = new CoordenadaDTO[barco.getNumeroCasillas()];
-
-        for(int i=0; i < casillasSugeridas.length;i++)
-        {
-            //TODO Verificar que la coordenada este libre
-            casillasSugeridas[i]= new CoordenadaDTO(x,y,false);
-            if(orientacion==1)//Horizontal
-            {
-                x++;
-            }
-
-
-            else //Vertical
-            {
-                y++;
-            }
-        }
-        return casillasSugeridas;
     }
 }
