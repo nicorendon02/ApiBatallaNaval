@@ -49,10 +49,10 @@ public class Juego {
         }
     }
 
-
-
     public boolean disparar(int x, int y)
     {
+        CoordenadaDTO coordenada = new CoordenadaDTO(x,y,true);
+        
 
         return false;
     }

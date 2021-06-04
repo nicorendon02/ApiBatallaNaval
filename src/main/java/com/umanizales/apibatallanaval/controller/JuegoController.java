@@ -8,6 +8,7 @@ import com.umanizales.apibatallanaval.service.ListaDEService;
 import com.umanizales.apibatallanaval.service.UsuarioService;
 import com.umanizales.apibatallanaval.repository.UsuarioRepository;
 import com.umanizales.apibatallanaval.model.entities.Usuario;
+import com.umanizales.apibatallanaval.model.entities.Barco;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -75,4 +76,15 @@ public class JuegoController {
         return listaDEService.visualizarListaDE();
     }
 
+    @PostMapping(path = "/disparar")
+    public @ResponseBody ResponseEntity<Object> disparar(@RequestBody CoordenadaDTO coordenadas)
+    {
+        int x = coordenadas.getX();
+        int y = coordenadas.getY();
+
+        return new ResponseEntity<>(new RespuestaDTO("Existoso",
+                "Disparo Efectuado",
+                null),
+                HttpStatus.OK);
+    }
 }

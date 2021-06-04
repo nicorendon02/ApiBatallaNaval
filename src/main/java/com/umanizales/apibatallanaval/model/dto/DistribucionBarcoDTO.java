@@ -14,7 +14,7 @@ public class DistribucionBarcoDTO implements Serializable {
     public byte orientacion;
     public String estado; //Tocado, Hundido, Intacto
 
-    public DistribucionBarcoDTO(Barco barco) {
+    public DistribucionBarcoDTO(Barco barco, CoordenadaDTO[] casillas) {
         this.casillas = casillas;
         this.barco = barco;
         this.orientacion = orientacion;

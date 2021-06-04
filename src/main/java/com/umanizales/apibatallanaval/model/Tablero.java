@@ -30,6 +30,8 @@ public class Tablero {
 
     }
 
+
+
     public String validarDisparo(int x, int y) // terminar!!!
     {
         return null;

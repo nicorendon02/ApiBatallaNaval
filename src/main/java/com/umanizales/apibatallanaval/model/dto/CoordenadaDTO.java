@@ -1,5 +1,6 @@
 package com.umanizales.apibatallanaval.model.dto;
 
+import com.umanizales.apibatallanaval.model.entities.Barco;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
@@ -13,6 +14,7 @@ public class CoordenadaDTO implements Serializable {
     public int x;
     public int y;
     public boolean estado;
+
 
     @Override
     public boolean equals(Object obj) {

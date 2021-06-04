@@ -1,5 +1,7 @@
 package com.umanizales.apibatallanaval.controller;
 
+import com.umanizales.apibatallanaval.model.dto.Coordenada;
+import com.umanizales.apibatallanaval.model.dto.CoordenadaDTO;
 import com.umanizales.apibatallanaval.model.dto.DistribucionBarcoDTO;
 import com.umanizales.apibatallanaval.model.entities.Barco;
 import com.umanizales.apibatallanaval.service.ListaDEService;
@@ -23,9 +25,10 @@ public class ListaDEController {
     }
 
     @PostMapping
-    public @ResponseBody ResponseEntity<Object> adicionarDistribucionBarco(@RequestBody Barco barco)
+    public @ResponseBody ResponseEntity<Object> adicionarDistribucionBarco(@RequestBody Barco barco, CoordenadaDTO[] posicion)
     {
-        DistribucionBarcoDTO distribucion = new DistribucionBarcoDTO(barco);
+
+        DistribucionBarcoDTO distribucion = new DistribucionBarcoDTO(barco, posicion);
         return listaDEService.adicionarDistribucionBarco(distribucion);
     }
 
