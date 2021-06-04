@@ -66,8 +66,15 @@ public class Juego {
                 return null;
         }
 
-    public Usuario validarGanador() //terminar!!!
+    public Usuario validarGanador(Usuario jugador1, Usuario jugador2)
     {
-        return null;
+        if (tableroJugador1 == null)
+        {
+            return jugador2;
+        }
+        else
+        {
+            return jugador1;
+        }
     }
 }
