@@ -46,7 +46,7 @@ public class JuegoService {
         }
     }
 
-    public ResponseEntity<Object> validarGanador(String jugador1, String jugador2)
+    public ResponseEntity<Object> validarGanador(Usuario jugador1, Usuario jugador2)
     {
         try{
             return new ResponseEntity<>(new RespuestaDTO("Ganador",
