@@ -2,6 +2,7 @@ package com.umanizales.apibatallanaval.model;
 
 import com.umanizales.apibatallanaval.model.dto.CoordenadaDTO;
 import com.umanizales.apibatallanaval.model.dto.DistribucionBarcoDTO;
+import com.umanizales.apibatallanaval.model.entities.Barco;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -112,6 +113,22 @@ public class ListaDE implements Serializable {
                 }
                 temp = temp.getSiguiente();
             }
+        }
+        return null;
+    }
+
+    public DistribucionBarcoDTO encontrarxPosicion(int posicion){
+        if(cabeza!=null)
+        {
+            NodoDE temp= cabeza;
+            int cont=1;
+            while(posicion!=cont)
+            {
+                temp = temp.getSiguiente();
+                cont++;
+            }
+            /// Estamos parados en el que estabamos buscando
+            return temp.getDato(); // hacer que retorne un DistribucionBarcoDTO
         }
         return null;
     }

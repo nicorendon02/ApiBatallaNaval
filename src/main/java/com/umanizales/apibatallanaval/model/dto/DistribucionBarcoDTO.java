@@ -82,4 +82,9 @@ public class DistribucionBarcoDTO implements Serializable {
         }
         return casillasSugeridas;
     }
+
+    public void validarEstadoCoordenadas()
+    {
+        // terminar!!!
+    }
 }

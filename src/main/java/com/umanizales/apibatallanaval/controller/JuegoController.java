@@ -3,6 +3,7 @@ package com.umanizales.apibatallanaval.controller;
 import com.umanizales.apibatallanaval.model.dto.CoordenadaDTO;
 import com.umanizales.apibatallanaval.model.dto.RequestJuegoDTO;
 import com.umanizales.apibatallanaval.model.dto.RespuestaDTO;
+import com.umanizales.apibatallanaval.model.entities.Barco;
 import com.umanizales.apibatallanaval.service.JuegoService;
 import com.umanizales.apibatallanaval.service.ListaDEService;
 import com.umanizales.apibatallanaval.service.UsuarioService;
@@ -83,5 +84,17 @@ public class JuegoController {
         Usuario jugador1 = usuarioRepository.obtenerUsuarioPorCorreo(usuario1);
         Usuario jugador2 = usuarioRepository.obtenerUsuarioPorCorreo(usuario2);
         return juegoService.validarGanador(jugador1,jugador2);
+    }
+
+    // nuevo
+    @GetMapping(path = "/organizarbarcos")
+    public @ResponseBody ResponseEntity<Object> organizarBarco(@RequestBody String correo,
+                                                               CoordenadaDTO coordenada,
+                                                               byte orientacion, int posBarco)
+    {
+        //String usuario1 = juegoDTO.getUsuario1();
+        //String usuario2 = juegoDTO.getUsuario2();
+        //juegoService.validarExistenciaJuego();
+        return null;
     }
 }
