@@ -128,7 +128,7 @@ public class ListaDE implements Serializable {
                 cont++;
             }
             /// Estamos parados en el que estabamos buscando
-            return temp.getDato(); // hacer que retorne un DistribucionBarcoDTO
+            return (DistribucionBarcoDTO) temp.getDato();
         }
         return null;
     }
