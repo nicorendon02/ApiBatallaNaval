@@ -2,6 +2,8 @@ package com.umanizales.apibatallanaval.service;
 
 import com.umanizales.apibatallanaval.model.Juego;
 import com.umanizales.apibatallanaval.model.Tablero;
+import com.umanizales.apibatallanaval.model.dto.CoordenadaDTO;
+import com.umanizales.apibatallanaval.model.dto.DistribucionBarcoDTO;
 import com.umanizales.apibatallanaval.model.dto.RespuestaDTO;
 import com.umanizales.apibatallanaval.model.entities.Usuario;
 import com.umanizales.apibatallanaval.repository.UsuarioRepository;
@@ -17,6 +19,7 @@ public class JuegoService {
     private ListaDEService listaDEService; //inyecto el servicio de ListaDE
     private UsuarioService usuarioService;
     private UsuarioRepository usuarioRepository;
+    private DistribucionBarcoDTO distribucionBarcoDTO;
 
 
     // TERMINAR ESTE CONSTRUCTOR!!!
@@ -76,9 +79,29 @@ public class JuegoService {
                                                  int posBarcoLista)
     {
         try{
-            return new ResponseEntity<>(new RespuestaDTO("Exitoso",
-                    juego.organizarBarco(x,y,orientacion,jugador,posBarcoLista), null),
-                    HttpStatus.OK);
+            CoordenadaDTO coordenadas = new CoordenadaDTO(x,y,false);
+            boolean distribucion = distribucionBarcoDTO.validarExistenciaCoordenada(coordenadas);
+
+            if (distribucion == true) {
+                DistribucionBarcoDTO distribucion1 = listaDEService.getListaBarcos().
+                        encontrarxPosicion(posBarcoLista);
+
+                if (distribucion1 == null) {
+                    return new ResponseEntity<>(new RespuestaDTO("Exitoso",
+                            juego.organizarBarco(x, y, orientacion, jugador, posBarcoLista), null),
+                            HttpStatus.OK);
+                }
+                else {
+                    return new ResponseEntity<>(new RespuestaDTO("Error",
+                            null, "Ya hay un barco en esa posicion"),
+                            HttpStatus.CONFLICT);
+                }
+            }
+            else{
+                return new ResponseEntity<>(new RespuestaDTO("Error",
+                        null, "La coordenada no existe"),
+                        HttpStatus.CONFLICT);
+            }
         }
         catch (Exception ex)
         {
