@@ -24,8 +24,8 @@ public class ListaDEService {
     public ResponseEntity<Object> adicionarDistribucionBarco(DistribucionBarcoDTO distribucion)
     {
         listaBarcos.adicionarNodo(distribucion);
-        return new ResponseEntity<>(new RespuestaDTO("Exitoso","Barco adicionado"
-                ,null), HttpStatus.OK);
+        return new ResponseEntity<>(new RespuestaDTO("Exitoso", "Barco adicionado",
+                null), HttpStatus.OK);
     }
 
     public ResponseEntity<Object> visualizarListaDE()
@@ -65,8 +65,6 @@ public class ListaDEService {
     }
 
     public Barco encontrarBarcoxCodigo(String codigo)
-
-
     {
         return (Barco) this.listaBarcos.encontrarDatoxCodigo(codigo);
     }
@@ -75,4 +73,6 @@ public class ListaDEService {
     {
         return listaBarcos;
     }
+
+    public int contarBarcos(){return listaBarcos.contarNodos();}
 }

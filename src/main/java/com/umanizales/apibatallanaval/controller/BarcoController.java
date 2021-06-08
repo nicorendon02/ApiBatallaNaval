@@ -25,7 +25,15 @@ public class BarcoController {
 
     @PostMapping
     public @ResponseBody ResponseEntity<Object> create(@RequestBody Barco barco)
+
     {
         return barcoService.create(barco);
+    }
+
+    @GetMapping(path = "barcobycasillas/{numCasillas}")
+    public @ResponseBody ResponseEntity<Object> findBarcoByNumeroCasillas(@PathVariable("numCasillas")
+                                                                                      short numCasillas)
+    {
+        return barcoService.findUsersByCasillas(numCasillas);
     }
 }
