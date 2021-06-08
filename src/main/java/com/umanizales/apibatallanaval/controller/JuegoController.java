@@ -90,8 +90,13 @@ public class JuegoController {
             byte orientacion = organizarBarcoDTO.getOrientacion();
             int posBarcoLista = organizarBarcoDTO.getPosBarcoLista();
 
-            if (jugador.getCorreo() == usuario)
+            if (jugador != null)
                 return juegoService.organizarBarco(x, y, orientacion, jugador, posBarcoLista);
+            else
+            {
+                return new ResponseEntity<>(new RespuestaDTO("Error",null,
+                        "El usuario no esta en la base de datos"),HttpStatus.CONFLICT);
+            }
 
         }
         catch (Exception e)
@@ -99,8 +104,7 @@ public class JuegoController {
             return new ResponseEntity<>(new RespuestaDTO("Error",null,
                     "El usuario no esta en la base de datos"),HttpStatus.CONFLICT);
         }
-        return new ResponseEntity<>(new RespuestaDTO("Exitoso",null,
-                "El barco se ha posicionado"),HttpStatus.OK);
+
     }
 
     @GetMapping(path = "/visualizartablero1")
