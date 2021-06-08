@@ -69,6 +69,8 @@ public class Juego {
             // metodo retorna distribucionBarco obtener dato por posicion
             listaDE.encontrarxPosicion(posBarcoLista);
             DistribucionBarcoDTO barco = tableroJugador1.getListaBarco().encontrarxPosicion(posBarcoLista);
+            tableroJugador1.validarExistenciaCoordenada(tableroJugador1,x,y);
+
             barco.definirUbicacion(barco.sugerirUbicacion(x,y,orientacion));
         }
         else if (jugador == tableroJugador2.jugador)
@@ -76,6 +78,7 @@ public class Juego {
             // metodo
             listaDE.encontrarxPosicion(posBarcoLista);
             DistribucionBarcoDTO barco = tableroJugador2.getListaBarco().encontrarxPosicion(posBarcoLista);
+            tableroJugador2.validarExistenciaCoordenada(tableroJugador2,x,y);
             barco.definirUbicacion(barco.sugerirUbicacion(x,y,orientacion));
         }
         return null;
