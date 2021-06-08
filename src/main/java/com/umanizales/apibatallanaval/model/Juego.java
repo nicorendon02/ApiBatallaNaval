@@ -50,6 +50,7 @@ public class Juego {
         }
     }
 
+<<<<<<< HEAD
     public Object visualizarTablero1()
     {
         //Object tablero1 = (Object) tableroJugador1;
@@ -91,6 +92,13 @@ public class Juego {
 
         CoordenadaDTO coordenada = new CoordenadaDTO(x,y,true);
         //CoordenadaDTO coordenada = new CoordenadaDTO(x,y,true);
+=======
+
+
+    public boolean disparar(int x, int y)
+    {
+
+>>>>>>> master
         return false;
     }
 

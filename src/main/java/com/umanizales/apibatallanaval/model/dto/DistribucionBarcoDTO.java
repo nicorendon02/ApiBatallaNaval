@@ -20,6 +20,25 @@ public class DistribucionBarcoDTO implements Serializable {
         this.barco = barco;
         this.estado="INTACTO";
 
+<<<<<<< HEAD
+=======
+    public boolean validarDisparo(int x, int y)
+    {
+        return true;
+    }
+
+    public boolean validarExistenciaCoordenada(CoordenadaDTO coordenada)
+    {
+        if(casillas!=null) {
+            for (CoordenadaDTO coord : casillas) {
+                if(coord.equals(coordenada))
+                {
+                    return true;
+                }
+            }
+        }
+        return false;
+>>>>>>> master
     }
 
     public void definirUbicacion(int x, int y, byte orientacion)

@@ -15,8 +15,12 @@ import java.util.List;
 @Service
 public class JuegoService {
     private ListaDEService listaDEService; //inyecto el servicio de ListaDE
+<<<<<<< HEAD
     private UsuarioService usuarioService;
     private UsuarioRepository usuarioRepository;
+=======
+    private Tablero tablero;
+>>>>>>> master
 
 
     // TERMINAR ESTE CONSTRUCTOR!!!
@@ -45,6 +49,7 @@ public class JuegoService {
                     HttpStatus.CONFLICT);
         }
     }
+<<<<<<< HEAD
 
     public Tablero visualizarTablero1()
     {
@@ -98,4 +103,6 @@ public class JuegoService {
                     null,"Aun no hay un ganador"), HttpStatus.CONFLICT);
         }
     }
+=======
+>>>>>>> master
 }

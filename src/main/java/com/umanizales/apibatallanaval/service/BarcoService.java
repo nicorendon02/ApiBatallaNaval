@@ -51,6 +51,7 @@ public class BarcoService {
 
     }
 
+<<<<<<< HEAD
     public ResponseEntity<Object> findUsersByCasillas(short numCasillas) {
         try {
             return new ResponseEntity<>(new RespuestaDTO("Exitoso",
@@ -61,4 +62,6 @@ public class BarcoService {
                     null, "Numero de casillas no corresponde"), HttpStatus.CONFLICT);
         }
     }
+=======
+>>>>>>> master
 }

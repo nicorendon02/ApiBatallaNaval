@@ -50,8 +50,14 @@ public class JuegoController {
                 return juegoService.crearJuego(jugador1, jugador2);
             } else {
                 return new ResponseEntity<>(new RespuestaDTO("Error",
+<<<<<<< HEAD
                         null, "Usuarios no concuerdan con base de datos"),
                         HttpStatus.CONFLICT  );
+=======
+                        null,
+                        "Los usuarios digitados no se encuentran en BD"),
+                        HttpStatus.CONFLICT);
+>>>>>>> master
             }
         }
         catch (Exception e)
