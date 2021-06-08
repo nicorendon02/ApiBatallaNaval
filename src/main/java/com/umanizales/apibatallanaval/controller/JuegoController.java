@@ -87,11 +87,12 @@ public class JuegoController {
             Usuario jugador = usuarioRepository.obtenerUsuarioPorCorreo(usuario);
             int x = organizarBarcoDTO.getX();
             int y = organizarBarcoDTO.getY();
-            int posBarcoLista = organizarBarcoDTO.getPosBarcoLista();
             byte orientacion = organizarBarcoDTO.getOrientacion();
+            int posBarcoLista = organizarBarcoDTO.getPosBarcoLista();
 
             if (jugador.getCorreo() == usuario)
                 return juegoService.organizarBarco(x, y, orientacion, jugador, posBarcoLista);
+
         }
         catch (Exception e)
         {
