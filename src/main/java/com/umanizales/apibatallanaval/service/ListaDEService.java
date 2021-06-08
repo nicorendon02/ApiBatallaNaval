@@ -73,4 +73,6 @@ public class ListaDEService {
     {
         return listaBarcos;
     }
+
+    public int contarBarcos(){return listaBarcos.contarNodos();}
 }
