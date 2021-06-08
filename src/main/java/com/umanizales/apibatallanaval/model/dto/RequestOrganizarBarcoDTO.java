@@ -11,9 +11,9 @@ import java.io.Serializable;
 
 public class RequestOrganizarBarcoDTO implements Serializable
 {
+    String correo;
     int x;
     int y;
     int posBarcoLista;
     byte orientacion;
-    String correo;
 }
