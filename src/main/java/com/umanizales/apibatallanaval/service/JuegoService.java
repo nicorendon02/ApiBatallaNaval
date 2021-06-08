@@ -14,6 +14,7 @@ import java.util.List;
 @Service
 public class JuegoService {
     private ListaDEService listaDEService; //inyecto el servicio de ListaDE
+    private UsuarioService usuarioService;
 
 
     // TERMINAR ESTE CONSTRUCTOR!!!
@@ -73,6 +74,21 @@ public class JuegoService {
         {
             return new ResponseEntity<>(new RespuestaDTO("Error",
                     null,"El juego no se ha creado aun"), HttpStatus.CONFLICT);
+        }
+    }
+
+    public ResponseEntity<Object> organizarBarco(int x, int y, byte orientacion, Usuario jugador,
+                                                 int posBarcoLista)
+    {
+        try{
+            return new ResponseEntity<>(new RespuestaDTO("Exitoso",
+                    juego.organizarBarco(x,y,orientacion,jugador,posBarcoLista),
+                    null), HttpStatus.CONFLICT);
+        }
+        catch (Exception ex)
+        {
+            return new ResponseEntity<>(new RespuestaDTO("Error",
+                    null,"El barco no pudo ser distribuido"), HttpStatus.CONFLICT);
         }
     }
 }

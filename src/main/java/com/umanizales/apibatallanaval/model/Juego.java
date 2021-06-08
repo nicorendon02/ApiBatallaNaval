@@ -57,13 +57,13 @@ public class Juego {
         {
             // metodo retorna distribucionBarco obtener dato por posicion
             DistribucionBarcoDTO barco = tableroJugador1.getListaBarco().encontrarxPosicion(posBarcoLista);
-            barco.definirUbicacion(x,y,orientacion);
+            barco.definirUbicacion(barco.sugerirUbicacion(x,y,orientacion));
         }
         else if (jugador == tableroJugador2.jugador)
         {
             // metodo
-            DistribucionBarcoDTO barco = tableroJugador1.getListaBarco().encontrarxPosicion(posBarcoLista);
-            barco.definirUbicacion(x,y,orientacion);
+            DistribucionBarcoDTO barco = tableroJugador2.getListaBarco().encontrarxPosicion(posBarcoLista);
+            barco.definirUbicacion(barco.sugerirUbicacion(x,y,orientacion));
         }
     }
 
@@ -84,7 +84,7 @@ public class Juego {
         return null;
     }
 
-    public Usuario validarGanador(Usuario jugador1, Usuario jugador2)
+    public Usuario validarGanador(Usuario jugador1, Usuario jugador2) // ARREGLAR
     {
         if (tableroJugador1 == null)
         {

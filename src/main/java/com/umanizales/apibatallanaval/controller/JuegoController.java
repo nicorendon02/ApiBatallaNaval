@@ -87,14 +87,13 @@ public class JuegoController {
     }
 
     // nuevo
-    @GetMapping(path = "/organizarbarcos")
+    @PostMapping(path = "/organizarbarcos")
     public @ResponseBody ResponseEntity<Object> organizarBarco(@RequestBody String correo,
                                                                CoordenadaDTO coordenada,
                                                                byte orientacion, int posBarco)
     {
-        //String usuario1 = juegoDTO.getUsuario1();
-        //String usuario2 = juegoDTO.getUsuario2();
-        //juegoService.validarExistenciaJuego();
-        return null;
+        Usuario jugador = usuarioRepository.obtenerUsuarioPorCorreo(correo);
+        return juegoService.organizarBarco(coordenada.getX(), coordenada.getY(), orientacion,jugador,
+                posBarco);
     }
 }
