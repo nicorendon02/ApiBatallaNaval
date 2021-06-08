@@ -3,23 +3,22 @@ package com.umanizales.apibatallanaval.controller;
 import com.umanizales.apibatallanaval.model.Tablero;
 import com.umanizales.apibatallanaval.model.dto.CoordenadaDTO;
 import com.umanizales.apibatallanaval.model.dto.RequestJuegoDTO;
+import com.umanizales.apibatallanaval.model.dto.RequestOrganizarBarcoDTO;
 import com.umanizales.apibatallanaval.model.dto.RespuestaDTO;
-import com.umanizales.apibatallanaval.model.entities.Barco;
 import com.umanizales.apibatallanaval.service.JuegoService;
 import com.umanizales.apibatallanaval.service.ListaDEService;
 import com.umanizales.apibatallanaval.service.UsuarioService;
 import com.umanizales.apibatallanaval.repository.UsuarioRepository;
 import com.umanizales.apibatallanaval.model.entities.Usuario;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping(path = "/juego")
 @Validated
+
 public class JuegoController {
 
     // Inyecto los servicios
@@ -70,24 +69,21 @@ public class JuegoController {
         return listaDEService.validarExistenciaCoordenadas(coordenadas);
     }
 
-    /*
-    @GetMapping(path = "/visualizar")
-    public @ResponseBody ResponseEntity<Object> visualizarLista()
-    {
-        return listaDEService.visualizarListaDE();
-    }
-
-    */
     // nuevo
     @PostMapping(path = "/organizarbarcos")
-    public @ResponseBody ResponseEntity<Object> organizarBarco(@RequestBody String correo,
-                                                               int x, int y, byte orientacion,
-                                                               int posBarcoLista)
+    public @ResponseBody ResponseEntity<Object> organizarBarco(@RequestBody RequestOrganizarBarcoDTO organizarBarcoDTO)
     {
-        Usuario jugador = usuarioRepository.obtenerUsuarioPorCorreo(correo);
+       String usuario = organizarBarcoDTO.getCorreo();
 
-        try {
-            if (jugador.getCorreo() == correo)
+        try
+        {
+            Usuario jugador = usuarioRepository.obtenerUsuarioPorCorreo(usuario);
+            int x = organizarBarcoDTO.getX();
+            int y = organizarBarcoDTO.getY();
+            int posBarcoLista = organizarBarcoDTO.getPosBarcoLista();
+            byte orientacion = organizarBarcoDTO.getOrientacion();
+
+            if (jugador.getCorreo() == usuario)
 
                 return juegoService.organizarBarco(x, y, orientacion, jugador, posBarcoLista);
         }
