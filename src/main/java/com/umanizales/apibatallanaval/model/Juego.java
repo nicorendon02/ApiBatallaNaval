@@ -4,6 +4,7 @@ import com.umanizales.apibatallanaval.model.dto.CoordenadaDTO;
 import com.umanizales.apibatallanaval.model.dto.DistribucionBarcoDTO;
 import com.umanizales.apibatallanaval.model.dto.RespuestaDTO;
 import com.umanizales.apibatallanaval.model.entities.Usuario;
+import com.umanizales.apibatallanaval.service.ListaDEService;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.http.HttpStatus;
@@ -49,21 +50,49 @@ public class Juego {
         }
     }
 
+    // metodo para saber a que tablero se manda el barco
+    public void organizarBarco(int x, int y, byte orientacion, Usuario jugador, int posBarcoLista)
+    {
+        if (jugador == tableroJugador1.jugador)
+        {
+            // metodo retorna distribucionBarco obtener dato por posicion
+            DistribucionBarcoDTO barco = tableroJugador1.getListaBarco().encontrarxPosicion(posBarcoLista);
+            barco.definirUbicacion(barco.sugerirUbicacion(x,y,orientacion));
+        }
+        else if (jugador == tableroJugador2.jugador)
+        {
+            // metodo
+            DistribucionBarcoDTO barco = tableroJugador2.getListaBarco().encontrarxPosicion(posBarcoLista);
+            barco.definirUbicacion(barco.sugerirUbicacion(x,y,orientacion));
+        }
+    }
+
     public boolean disparar(int x, int y)
     {
+
+        // CoordenadaDTO coordenada = new CoordenadaDTO(x,y,true);
+
         CoordenadaDTO coordenada = new CoordenadaDTO(x,y,true);
-        
+        //CoordenadaDTO coordenada = new CoordenadaDTO(x,y,true);
+
 
         return false;
     }
 
-        public String validarDisparo(int x, int y) // preguntar parametros de este metodo???
-        {
-                return null;
-        }
-
-    public Usuario validarGanador() //terminar!!!
+    public String validarDisparo(int x, int y) // preguntar parametros de este metodo???
     {
         return null;
+    }
+
+    public Usuario validarGanador(Usuario jugador1, Usuario jugador2) // ARREGLAR
+    {
+        if (tableroJugador1 == null)
+        {
+            return jugador2;
+        }
+        else
+        {
+            return jugador1;
+        }
     }
 }
