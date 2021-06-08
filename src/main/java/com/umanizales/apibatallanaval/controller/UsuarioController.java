@@ -39,5 +39,4 @@ public class UsuarioController {
     {
         return usuarioService.findUsersByMail(mail);
     }
-
 }

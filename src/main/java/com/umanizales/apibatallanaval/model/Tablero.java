@@ -30,8 +30,24 @@ public class Tablero {
 
     }
 
-    public String validarDisparo(int x, int y) // terminar!!!
+    public boolean validarExistenciaCoordenada(Tablero tablero, int filas, int cols)
+    {
+        if (filas <= tablero.getFilas() && cols <= tablero.getCols())
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    public String validarDisparo(int x, int y)
     {
         return null;
+    }
+
+    public void ocupacionCoordenada (int filas, int cols)
+    {
     }
 }

@@ -32,7 +32,11 @@ public class SwaggerConfig {
                 "Api que permite gestionar todo el backend de el juego Batalla Naval",
                 "1.0",
                 "http://www.umanizales.com/",
+<<<<<<< HEAD
                 new Contact("Nicolas Rendon", "https://www.umanizales.edu.co/",
+=======
+                new Contact("Nicolas Rendon", "http://www.umanizales.edu.co/",
+>>>>>>> nico
                         "nrendon87351@umanizales.edu.co"),
 
                 "LICENSE",

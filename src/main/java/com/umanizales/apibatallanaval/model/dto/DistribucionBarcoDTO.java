@@ -3,24 +3,24 @@ package com.umanizales.apibatallanaval.model.dto;
 import com.umanizales.apibatallanaval.model.entities.Barco;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 
 import java.io.Serializable;
 
 @Getter
 @Setter
 public class DistribucionBarcoDTO implements Serializable {
-    public CoordenadaDTO[] casillas;
-    public Barco barco;
-    public byte orientacion;
-    public String estado; //Tocado, Hundido, Intacto
+    private Barco barco;
+    private byte orientacion;
+    private String estado;//Tocado, Hundido, Intacto
+    private CoordenadaDTO[] casillas;
 
     public DistribucionBarcoDTO(Barco barco) {
-        this.casillas = casillas;
         this.barco = barco;
-        this.orientacion = orientacion;
-        this.estado = estado;
-    }
+        this.estado="INTACTO";
 
+<<<<<<< HEAD
     public boolean validarDisparo(int x, int y)
     {
         return true;
@@ -37,6 +37,8 @@ public class DistribucionBarcoDTO implements Serializable {
             }
         }
         return false;
+=======
+>>>>>>> nico
     }
 
     public void definirUbicacion(int x, int y, byte orientacion)
@@ -57,11 +59,22 @@ public class DistribucionBarcoDTO implements Serializable {
         }
     }
 
-    public void definirUbicacion(CoordenadaDTO[] coordenadas)
+   public void definirUbicacion(CoordenadaDTO[] coordenadas)
     {
         this.casillas= coordenadas;
     }
 
+    public boolean validarExistenciaCoordenada(CoordenadaDTO coordenada){
+        if(casillas!=null) {
+            for (CoordenadaDTO coord : casillas) {
+                if(coord.equals(coordenada))
+                {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
 
     public CoordenadaDTO[] sugerirUbicacion(int x, int y, byte orientacion)
     {
@@ -81,5 +94,21 @@ public class DistribucionBarcoDTO implements Serializable {
             }
         }
         return casillasSugeridas;
+    }
+
+    public Object validarEstadoCoordenada(CoordenadaDTO coordenada)
+    {
+        if (casillas != null)
+        {
+            for (CoordenadaDTO coord : casillas)
+            {
+                if(coord.equals(coordenada))
+                {
+                    return estado;
+                }
+            }
+        }
+        return new ResponseEntity<RespuestaDTO>(new RespuestaDTO("Error",
+                null,"Los parametros de la cooordenada se encentran fuera del tablero"), HttpStatus.CONFLICT);
     }
 }
