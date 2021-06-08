@@ -1,5 +1,6 @@
 package com.umanizales.apibatallanaval.controller;
 
+import com.umanizales.apibatallanaval.model.Tablero;
 import com.umanizales.apibatallanaval.model.dto.CoordenadaDTO;
 import com.umanizales.apibatallanaval.model.dto.RequestJuegoDTO;
 import com.umanizales.apibatallanaval.model.dto.RespuestaDTO;
@@ -46,9 +47,13 @@ public class JuegoController {
             Usuario jugador1 = usuarioRepository.obtenerUsuarioPorCorreo(usuario1);
             Usuario jugador2 = usuarioRepository.obtenerUsuarioPorCorreo(usuario2);
 
-            if (jugador1 != null && jugador2 != null) {
-                return juegoService.crearJuego(jugador1, jugador2);
-            } else {
+            if (jugador1 != null && jugador2 != null)
+            {
+                return new ResponseEntity<>(new RespuestaDTO("Exitoso",
+                        juegoService.crearJuego(jugador1, jugador2),null), HttpStatus.OK);
+            }
+            else
+            {
                 return new ResponseEntity<>(new RespuestaDTO("Error",
                         null,
                         "Usuarios no corresponden con base de datos"),
@@ -70,30 +75,55 @@ public class JuegoController {
         return listaDEService.validarExistenciaCoordenadas(coordenadas);
     }
 
+    /*
     @GetMapping(path = "/visualizar")
     public @ResponseBody ResponseEntity<Object> visualizarLista()
     {
         return listaDEService.visualizarListaDE();
     }
 
+    */
+    // nuevo
+    @PostMapping(path = "/organizarbarcos")
+    public @ResponseBody ResponseEntity<Object> organizarBarco(@RequestBody String correo,
+                                                               int x, int y, byte orientacion,
+                                                               int posBarcoLista)
+    {
+        Usuario jugador = usuarioRepository.obtenerUsuarioPorCorreo(correo);
+        //if (jugador != null)
+
+        return juegoService.organizarBarco(x, y, orientacion, jugador, posBarcoLista);
+
+        //else
+
+        // return new ResponseEntity<>(new RespuestaDTO("Error",null, "El usuario no esta en la base de datos"),HttpStatus.CONFLICT);
+
+    }
+
+    @GetMapping(path = "/visualizartablero1")
+    public @ResponseBody Tablero visualizarTablero1()
+    {
+        return juegoService.visualizarTablero1();
+    }
+
+    @GetMapping(path = "/visualizartablero2")
+    public @ResponseBody Tablero visualizarTablero2()
+    {
+        return juegoService.visualizarTablero2();
+    }
+
+    /*
     @GetMapping(path = "/ganador")
     public @ResponseBody ResponseEntity<Object> validarGanador(@RequestBody RequestJuegoDTO juegoDTO)
     {
+
         String usuario1 = juegoDTO.getUsuario1();
         String usuario2 = juegoDTO.getUsuario2();
         Usuario jugador1 = usuarioRepository.obtenerUsuarioPorCorreo(usuario1);
         Usuario jugador2 = usuarioRepository.obtenerUsuarioPorCorreo(usuario2);
         return juegoService.validarGanador(jugador1,jugador2);
-    }
 
-    // nuevo
-    @PostMapping(path = "/organizarbarcos")
-    public @ResponseBody ResponseEntity<Object> organizarBarco(@RequestBody String correo,
-                                                               CoordenadaDTO coordenada,
-                                                               byte orientacion, int posBarco)
-    {
-        Usuario jugador = usuarioRepository.obtenerUsuarioPorCorreo(correo);
-        return juegoService.organizarBarco(coordenada.getX(), coordenada.getY(), orientacion,jugador,
-                posBarco);
+        return null;
     }
+    */
 }

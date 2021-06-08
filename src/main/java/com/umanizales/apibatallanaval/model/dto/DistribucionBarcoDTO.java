@@ -9,34 +9,15 @@ import java.io.Serializable;
 @Getter
 @Setter
 public class DistribucionBarcoDTO implements Serializable {
-    public CoordenadaDTO[] casillas;
-    public Barco barco;
-    public byte orientacion;
-    public String estado; //Tocado, Hundido, Intacto
+    private Barco barco;
+    private byte orientacion;
+    private String estado;//Tocado, Hundido, Intacto
+    private CoordenadaDTO[] casillas;
 
     public DistribucionBarcoDTO(Barco barco) {
-        this.casillas = casillas;
         this.barco = barco;
-        this.orientacion = orientacion;
-        this.estado = estado;
-    }
+        this.estado="INTACTO";
 
-    public boolean validarDisparo(int x, int y)
-    {
-        return true;   // TERMINAR!!!
-    }
-
-    public boolean validarExistenciaCoordenada(CoordenadaDTO coordenada)
-    {
-        if(casillas!=null) {
-            for (CoordenadaDTO coord : casillas) {
-                if(coord.equals(coordenada))
-                {
-                    return true;
-                }
-            }
-        }
-        return false;
     }
 
     public void definirUbicacion(int x, int y, byte orientacion)
@@ -62,6 +43,17 @@ public class DistribucionBarcoDTO implements Serializable {
         this.casillas= coordenadas;
     }
 
+    public boolean validarExistenciaCoordenada(CoordenadaDTO coordenada){
+        if(casillas!=null) {
+            for (CoordenadaDTO coord : casillas) {
+                if(coord.equals(coordenada))
+                {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
 
     public CoordenadaDTO[] sugerirUbicacion(int x, int y, byte orientacion)
     {
@@ -83,8 +75,5 @@ public class DistribucionBarcoDTO implements Serializable {
         return casillasSugeridas;
     }
 
-    public void validarEstadoCoordenadas()
-    {
-        // terminar!!!
-    }
+    public void validarEstadoCoordenada(){}
 }
