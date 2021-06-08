@@ -42,6 +42,11 @@ public class Tablero {
         }
     }
 
+    public String validarDisparo(int x, int y)
+    {
+        return null;
+    }
+
     public void ocupacionCoordenada (int filas, int cols)
     {
     }

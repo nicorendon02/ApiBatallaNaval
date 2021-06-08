@@ -71,7 +71,8 @@ public class JuegoController {
 
     // nuevo
     @PostMapping(path = "/organizarbarcos")
-    public @ResponseBody ResponseEntity<Object> organizarBarco(@RequestBody RequestOrganizarBarcoDTO organizarBarcoDTO)
+    public @ResponseBody ResponseEntity<Object> organizarBarco(@RequestBody RequestOrganizarBarcoDTO
+                                                                           organizarBarcoDTO)
     {
        String usuario = organizarBarcoDTO.getCorreo();
 
@@ -84,7 +85,6 @@ public class JuegoController {
             byte orientacion = organizarBarcoDTO.getOrientacion();
 
             if (jugador.getCorreo() == usuario)
-
                 return juegoService.organizarBarco(x, y, orientacion, jugador, posBarcoLista);
         }
         catch (Exception e)
