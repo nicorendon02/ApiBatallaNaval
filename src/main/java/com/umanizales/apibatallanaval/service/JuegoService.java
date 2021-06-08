@@ -31,16 +31,12 @@ public class JuegoService {
     public ResponseEntity<Object> crearJuego(Usuario jugador1, Usuario jugador2)
     {
         // validar y crear juego con los 2 tableros
+
         if (listaDEService.obtenerContadorLista()>0)
         {
-            // crear el tablero 1 y el tablero 2
-            // crear el juego
-            // retorno el juego creado
-            //juego = new Juego(1,jugador1,jugador2,listaDEService.getListaBarcos());
-            juego = new Juego(1,jugador1,jugador2, listaDEService.getListaBarcos());
-            juego.crearTableros(1,jugador1,jugador2,listaDEService.contarBarcos());
+            juego = new Juego(1,jugador1,jugador2,listaDEService.getListaBarcos());
             return new ResponseEntity<>(new RespuestaDTO("Juego creado",
-                    null,null), HttpStatus.OK);
+                    juego,null), HttpStatus.OK);
         }
         else
         {

@@ -47,17 +47,12 @@ public class JuegoController {
             Usuario jugador1 = usuarioRepository.obtenerUsuarioPorCorreo(usuario1);
             Usuario jugador2 = usuarioRepository.obtenerUsuarioPorCorreo(usuario2);
 
-            if (jugador1 != null && jugador2 != null)
-            {
-                return new ResponseEntity<>(new RespuestaDTO("Exitoso",
-                        juegoService.crearJuego(jugador1, jugador2),null), HttpStatus.OK);
-            }
-            else
-            {
+            if (jugador1 != null && jugador2 != null) {
+                return juegoService.crearJuego(jugador1, jugador2);
+            } else {
                 return new ResponseEntity<>(new RespuestaDTO("Error",
-                        null,
-                        "Usuarios no corresponden con base de datos"),
-                        HttpStatus.CONFLICT);
+                        null, "Usuarios no concuerdan con base de datos"),
+                        HttpStatus.CONFLICT  );
             }
         }
         catch (Exception e)
@@ -90,14 +85,19 @@ public class JuegoController {
                                                                int posBarcoLista)
     {
         Usuario jugador = usuarioRepository.obtenerUsuarioPorCorreo(correo);
-        //if (jugador != null)
 
-        return juegoService.organizarBarco(x, y, orientacion, jugador, posBarcoLista);
+        try {
+            if (jugador.getCorreo() == correo)
 
-        //else
-
-        // return new ResponseEntity<>(new RespuestaDTO("Error",null, "El usuario no esta en la base de datos"),HttpStatus.CONFLICT);
-
+                return juegoService.organizarBarco(x, y, orientacion, jugador, posBarcoLista);
+        }
+        catch (Exception e)
+        {
+            return new ResponseEntity<>(new RespuestaDTO("Error",null,
+                    "El usuario no esta en la base de datos"),HttpStatus.CONFLICT);
+        }
+        return new ResponseEntity<>(new RespuestaDTO("Exitoso",null,
+                "El barco se ha posicionado"),HttpStatus.OK);
     }
 
     @GetMapping(path = "/visualizartablero1")

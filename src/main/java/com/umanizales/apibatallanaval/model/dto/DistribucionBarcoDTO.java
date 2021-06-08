@@ -3,6 +3,8 @@ package com.umanizales.apibatallanaval.model.dto;
 import com.umanizales.apibatallanaval.model.entities.Barco;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 
 import java.io.Serializable;
 
@@ -38,7 +40,7 @@ public class DistribucionBarcoDTO implements Serializable {
         }
     }
 
-    public void definirUbicacion(CoordenadaDTO[] coordenadas)
+   public void definirUbicacion(CoordenadaDTO[] coordenadas)
     {
         this.casillas= coordenadas;
     }
@@ -75,5 +77,19 @@ public class DistribucionBarcoDTO implements Serializable {
         return casillasSugeridas;
     }
 
-    public void validarEstadoCoordenada(){}
+    public Object validarEstadoCoordenada(CoordenadaDTO coordenada)
+    {
+        if (casillas != null)
+        {
+            for (CoordenadaDTO coord : casillas)
+            {
+                if(coord.equals(coordenada))
+                {
+                    return estado;
+                }
+            }
+        }
+        return new ResponseEntity<RespuestaDTO>(new RespuestaDTO("Error",
+                null,"Los parametros de la cooordenada se encentran fuera del tablero"), HttpStatus.CONFLICT);
+    }
 }
