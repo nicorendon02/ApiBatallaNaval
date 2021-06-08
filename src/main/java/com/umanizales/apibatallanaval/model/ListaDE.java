@@ -2,13 +2,14 @@ package com.umanizales.apibatallanaval.model;
 
 import com.umanizales.apibatallanaval.model.dto.CoordenadaDTO;
 import com.umanizales.apibatallanaval.model.dto.DistribucionBarcoDTO;
-import com.umanizales.apibatallanaval.model.entities.Barco;
+import com.umanizales.apibatallanaval.model.dto.RespuestaDTO;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 
 import java.io.Serializable;
-import java.util.List;
 
 @Getter
 @Setter
@@ -131,5 +132,26 @@ public class ListaDE implements Serializable {
             return (DistribucionBarcoDTO) temp.getDato();
         }
         return null;
+    }
+
+    public boolean validarCoordenadasNodo(int x, int y)
+    {
+        if (cabeza == null){
+            return false;
+        }
+        else
+        {
+            int cont = 1;
+            NodoDE temp = cabeza;
+            while (temp.getSiguiente() != null){
+                if (temp.getDato()      )
+                {
+
+                }
+                cont++;
+                temp = temp.getSiguiente();
+            }
+            return false;
+        }
     }
 }
