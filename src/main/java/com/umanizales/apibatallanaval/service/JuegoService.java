@@ -77,7 +77,8 @@ public class JuegoService {
     {
         try{
             return new ResponseEntity<>(new RespuestaDTO("Exitoso",
-                    juego.organizarBarco(x,y,orientacion,jugador,posBarcoLista), null), HttpStatus.OK);
+                    juego.organizarBarco(x,y,orientacion,jugador,posBarcoLista), null),
+                    HttpStatus.OK);
         }
         catch (Exception ex)
         {
@@ -86,6 +87,7 @@ public class JuegoService {
         }
     }
 
+    /*
     public ResponseEntity<Object> validarGanador(Usuario jugador1, Usuario jugador2)
     {
         try{
@@ -98,4 +100,6 @@ public class JuegoService {
                     null,"Aun no hay un ganador"), HttpStatus.CONFLICT);
         }
     }
+
+     */
 }

@@ -134,6 +134,7 @@ public class ListaDE implements Serializable {
         return null;
     }
 
+    /*
     public boolean validarCoordenadasNodo(int x, int y)
     {
         if (cabeza == null){
@@ -154,4 +155,6 @@ public class ListaDE implements Serializable {
             return false;
         }
     }
+    
+     */
 }
