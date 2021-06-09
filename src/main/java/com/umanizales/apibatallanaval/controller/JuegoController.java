@@ -63,7 +63,7 @@ public class JuegoController {
         catch (Exception e)
         {
             return new ResponseEntity<>(new RespuestaDTO("Error",
-                    null, "El usuario no esta en la base de datos"),
+                    null, "No se pudo crear el juego"),
                     HttpStatus.CONFLICT);
         }
     }
@@ -80,41 +80,40 @@ public class JuegoController {
     public @ResponseBody ResponseEntity<Object> organizarBarco(@RequestBody RequestOrganizarBarcoDTO
                                                                            organizarBarcoDTO)
     {
-       String usuario = organizarBarcoDTO.getCorreo();
-
         try
         {
-            Usuario jugador = usuarioRepository.obtenerUsuarioPorCorreo(usuario);
             int x = organizarBarcoDTO.getX();
             int y = organizarBarcoDTO.getY();
             byte orientacion = organizarBarcoDTO.getOrientacion();
             int posBarcoLista = organizarBarcoDTO.getPosBarcoLista();
 
-            if (jugador != null)
+            String usuario = organizarBarcoDTO.getCorreo();
+            Usuario jugador = usuarioRepository.obtenerUsuarioPorCorreo(usuario);
+
+            if (jugador != null) {
                 return juegoService.organizarBarco(x, y, orientacion, jugador, posBarcoLista);
+            }
             else
             {
                 return new ResponseEntity<>(new RespuestaDTO("Error",null,
                         "El usuario no esta en la base de datos"),HttpStatus.CONFLICT);
             }
-
         }
         catch (Exception e)
         {
             return new ResponseEntity<>(new RespuestaDTO("Error",null,
-                    "El usuario no esta en la base de datos"),HttpStatus.CONFLICT);
+                    "No se ha podido validar la distribucion"),HttpStatus.CONFLICT);
         }
-
     }
 
     @GetMapping(path = "/visualizartablero1")
-    public @ResponseBody Tablero visualizarTablero1()
+    public @ResponseBody ResponseEntity<Object> visualizarTablero1()
     {
         return juegoService.visualizarTablero1();
     }
 
     @GetMapping(path = "/visualizartablero2")
-    public @ResponseBody Tablero visualizarTablero2()
+    public @ResponseBody ResponseEntity<Object> visualizarTablero2()
     {
         return juegoService.visualizarTablero2();
     }

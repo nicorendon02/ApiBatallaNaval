@@ -12,6 +12,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -45,8 +46,10 @@ public class JuegoService {
         if (listaDEService.obtenerContadorLista()>0)
         {
             juego = new Juego(1,jugador1,jugador2,listaDEService.getListaBarcos());
+            List<Juego> juegoLista = new ArrayList<>();
+            juegoLista.add(juego);
             return new ResponseEntity<>(new RespuestaDTO("Juego creado",
-                    juego,null), HttpStatus.OK);
+                    juegoLista,null), HttpStatus.OK);
         }
         else
         {
@@ -58,14 +61,16 @@ public class JuegoService {
 <<<<<<< HEAD
 =======
 
-    public Tablero visualizarTablero1()
+    public ResponseEntity<Object> visualizarTablero1()
     {
-        return (Tablero) juego.visualizarTablero1();
+        return new ResponseEntity<>(new RespuestaDTO("Exitoso",
+                juego.listarTablero1(),null), HttpStatus.OK);
     }
 
-    public Tablero visualizarTablero2()
+    public ResponseEntity<Object> visualizarTablero2()
     {
-        return (Tablero) juego.visualizarTablero2();
+        return new ResponseEntity<>(new RespuestaDTO("Exitoso",
+                juego.listarTablero2(),null), HttpStatus.OK);
     }
 
     public ResponseEntity<Object> validarExistenciaJuego(Tablero tablerojugador1, Tablero tablerojugador2)
@@ -88,30 +93,15 @@ public class JuegoService {
                                                  int posBarcoLista)
     {
         try{
-            CoordenadaDTO coordenadas = new CoordenadaDTO(x,y,false);
-            boolean distribucion = distribucionBarcoDTO.validarExistenciaCoordenada(coordenadas);
-
-            if (distribucion) {  // si es true...
-                CoordenadaDTO[] coordSugeridas = distribucionBarcoDTO.sugerirUbicacion(x,y,orientacion);
-                boolean validacion = listaDEService.validarCoordenadasNodo(coordSugeridas);
-
-                if (!validacion)  // si es false...
-                {
-                    juego.organizarBarco(coordSugeridas,jugador,posBarcoLista);
-                }
-            }
-            else{
-                return new ResponseEntity<>(new RespuestaDTO("Error",
-                        null, "La coordenada no existe"),
-                        HttpStatus.CONFLICT);
-            }
+            return new ResponseEntity<>(new RespuestaDTO("Exitoso",
+                    juego.organizarBarco(x,y,orientacion,jugador,posBarcoLista),
+                    null), HttpStatus.OK);
         }
         catch (Exception ex)
         {
             return new ResponseEntity<>(new RespuestaDTO("Error",
                     null,"El barco no pudo ser distribuido"), HttpStatus.CONFLICT);
         }
-        return null;
     }
 
     /*
