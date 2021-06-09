@@ -22,6 +22,7 @@ public class DistribucionBarcoDTO implements Serializable {
 
     }
 
+    /*
     public void definirUbicacion(int x, int y, byte orientacion)
     {
         this.casillas = new CoordenadaDTO[barco.getNumeroCasillas()];
@@ -39,6 +40,7 @@ public class DistribucionBarcoDTO implements Serializable {
             }
         }
     }
+    */
 
    public void definirUbicacion(CoordenadaDTO[] coordenadas)
     {

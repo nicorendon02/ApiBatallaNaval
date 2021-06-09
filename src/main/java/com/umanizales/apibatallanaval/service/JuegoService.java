@@ -88,7 +88,7 @@ public class JuegoService {
 
                 if (!validacion)  // si es false...
                 {
-                    // llamar a organizar el barco con las coordenadas sugeridas
+                    juego.organizarBarco(coordSugeridas,jugador,posBarcoLista);
                 }
             }
             else{
