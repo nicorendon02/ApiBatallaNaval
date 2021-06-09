@@ -1,7 +1,9 @@
 package com.umanizales.apibatallanaval.service;
 
+import com.umanizales.apibatallanaval.model.Juego;
 import com.umanizales.apibatallanaval.model.ListaDE;
 import com.umanizales.apibatallanaval.model.NodoDE;
+import com.umanizales.apibatallanaval.model.Tablero;
 import com.umanizales.apibatallanaval.model.dto.CoordenadaDTO;
 import com.umanizales.apibatallanaval.model.dto.DistribucionBarcoDTO;
 import com.umanizales.apibatallanaval.model.dto.RespuestaDTO;
@@ -75,4 +77,9 @@ public class ListaDEService {
     }
 
     public int contarBarcos(){return listaBarcos.contarNodos();}
+
+    public boolean validarCoordenadasNodo(CoordenadaDTO[] coordenada)
+    {
+        return listaBarcos.validarCoordenadasNodo(coordenada);
+    }
 }
