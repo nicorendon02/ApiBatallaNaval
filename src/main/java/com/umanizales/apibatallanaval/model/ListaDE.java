@@ -112,16 +112,18 @@ public class ListaDE implements Serializable {
         return null;
     }
 
+    /*
     public boolean validarCoordenadasNodo(CoordenadaDTO[] coordenada) {
         NodoDE temp = cabeza;
         for (int i = 1; i <= getCont(); i++)
         {
             DistribucionBarcoDTO temp1 = (DistribucionBarcoDTO) temp.getDato();
-            if (temp1.getCasillas() == coordenada){
+            if (temp1.getCasillas().equals(coordenada)){
                 return true;
             }
             temp = temp.getSiguiente();
         }
         return false;
     }
+     */
 }

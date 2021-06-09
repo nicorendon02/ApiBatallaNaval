@@ -22,7 +22,6 @@ public class DistribucionBarcoDTO implements Serializable {
 
     }
 
-    /*
     public void definirUbicacion(int x, int y, byte orientacion)
     {
         this.casillas = new CoordenadaDTO[barco.getNumeroCasillas()];
@@ -40,7 +39,6 @@ public class DistribucionBarcoDTO implements Serializable {
             }
         }
     }
-    */
 
    public void definirUbicacion(CoordenadaDTO[] coordenadas)
     {
@@ -79,6 +77,7 @@ public class DistribucionBarcoDTO implements Serializable {
         return casillasSugeridas;
     }
 
+    /*
     public Object validarEstadoCoordenada(CoordenadaDTO coordenada)
     {
         if (casillas != null)
@@ -92,6 +91,8 @@ public class DistribucionBarcoDTO implements Serializable {
             }
         }
         return new ResponseEntity<RespuestaDTO>(new RespuestaDTO("Error",
-                null,"Los parametros de la cooordenada se encentran fuera del tablero"), HttpStatus.CONFLICT);
+                null,"Los parametros de la cooordenada se encentran fuera del tablero"),
+                HttpStatus.CONFLICT);
     }
+     */
 }

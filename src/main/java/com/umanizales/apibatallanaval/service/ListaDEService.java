@@ -77,9 +77,4 @@ public class ListaDEService {
     }
 
     public int contarBarcos(){return listaBarcos.contarNodos();}
-
-    public boolean validarCoordenadasNodo(CoordenadaDTO[] coordenada)
-    {
-        return listaBarcos.validarCoordenadasNodo(coordenada);
-    }
 }
