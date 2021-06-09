@@ -42,7 +42,10 @@ public class DistribucionBarcoDTO implements Serializable {
 
    public void definirUbicacion(CoordenadaDTO[] coordenadas)
     {
-        this.casillas= coordenadas;
+        // validar que no hay barcos ocupando esas casillas...
+        if (this.casillas == null) {
+            this.casillas = coordenadas;
+        }
     }
 
     public boolean validarExistenciaCoordenada(CoordenadaDTO coordenada){

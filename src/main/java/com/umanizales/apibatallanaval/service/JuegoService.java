@@ -86,7 +86,7 @@ public class JuegoService {
         try{
             return new ResponseEntity<>(new RespuestaDTO("Exitoso",
                     juego.organizarBarco(x,y,orientacion,jugador,posBarcoLista),
-                    null), HttpStatus.CONFLICT);
+                    null), HttpStatus.OK);
         }
         catch (Exception ex)
         {
