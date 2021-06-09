@@ -62,19 +62,21 @@ public class Juego {
     }
 
     // metodo para saber a que tablero se manda el barco
-    public Object organizarBarco(CoordenadaDTO[] coord, Usuario jugador, int posBarcoLista)
+    public Object organizarBarco(int x, int y, byte orientacion, Usuario jugador, int posBarcoLista)
     {
         if (jugador.getId() == tableroJugador1.jugador.getId())
         {
             // metodo retorna distribucionBarco obtener dato por posicion
             DistribucionBarcoDTO barco = tableroJugador1.getListaBarco().encontrarxPosicion(posBarcoLista);
-            barco.definirUbicacion(coord);
+            tableroJugador1.validarExistenciaCoordenada(tableroJugador1,x,y);
+            barco.definirUbicacion(barco.sugerirUbicacion(x,y,orientacion));
         }
         else if (jugador.getId() == tableroJugador2.jugador.getId())
         {
             // metodo
             DistribucionBarcoDTO barco = tableroJugador2.getListaBarco().encontrarxPosicion(posBarcoLista);
-            barco.definirUbicacion(coord);
+            tableroJugador2.validarExistenciaCoordenada(tableroJugador2,x,y);
+            barco.definirUbicacion(barco.sugerirUbicacion(x,y,orientacion));
         }
         return new ResponseEntity<>(new RespuestaDTO("Error",null,
             "El barco no pudo ser distribuido"),HttpStatus.CONFLICT);

@@ -88,7 +88,7 @@ public class JuegoService {
 
                 if (!validacion)  // si es false...
                 {
-                    juego.organizarBarco(coordSugeridas,jugador,posBarcoLista);
+                    juego.organizarBarco(x,y,orientacion,jugador,posBarcoLista);
                 }
             }
             else{
