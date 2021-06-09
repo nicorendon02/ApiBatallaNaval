@@ -1,7 +1,9 @@
 package com.umanizales.apibatallanaval.service;
 
+import com.umanizales.apibatallanaval.model.Juego;
 import com.umanizales.apibatallanaval.model.ListaDE;
 import com.umanizales.apibatallanaval.model.NodoDE;
+import com.umanizales.apibatallanaval.model.Tablero;
 import com.umanizales.apibatallanaval.model.dto.CoordenadaDTO;
 import com.umanizales.apibatallanaval.model.dto.DistribucionBarcoDTO;
 import com.umanizales.apibatallanaval.model.dto.RespuestaDTO;

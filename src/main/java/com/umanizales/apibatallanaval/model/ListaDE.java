@@ -3,6 +3,7 @@ package com.umanizales.apibatallanaval.model;
 import com.umanizales.apibatallanaval.model.dto.CoordenadaDTO;
 import com.umanizales.apibatallanaval.model.dto.DistribucionBarcoDTO;
 import com.umanizales.apibatallanaval.model.dto.RespuestaDTO;
+import com.umanizales.apibatallanaval.model.entities.Barco;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -112,15 +113,14 @@ public class ListaDE implements Serializable {
     }
 
     public boolean validarCoordenadasNodo(CoordenadaDTO[] coordenada) {
-        if (cabeza != null) {
-            NodoDE temp = cabeza;
-            while (cabeza.getSiguiente() != null) {
-                if (cabeza.getDato() == coordenada) {
-                    return true;
-                }
+        NodoDE temp = cabeza;
+        for (int i = 1; i <= getCont(); i++)
+        {
+            DistribucionBarcoDTO temp1 = (DistribucionBarcoDTO) temp.getDato();
+            if (temp1.getCasillas() == coordenada){
+                return true;
             }
-
-            return false;
+            temp = temp.getSiguiente();
         }
         return false;
     }
