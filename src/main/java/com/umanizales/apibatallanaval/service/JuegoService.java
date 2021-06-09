@@ -82,19 +82,13 @@ public class JuegoService {
             CoordenadaDTO coordenadas = new CoordenadaDTO(x,y,false);
             boolean distribucion = distribucionBarcoDTO.validarExistenciaCoordenada(coordenadas);
 
-            if (distribucion == true) {
-                DistribucionBarcoDTO distribucion1 = listaDEService.getListaBarcos().
-                        encontrarxPosicion(posBarcoLista);
+            if (distribucion) {  // si es true...
+                CoordenadaDTO[] coordSugeridas = distribucionBarcoDTO.sugerirUbicacion(x,y,orientacion);
+                boolean validacion = listaDEService.validarCoordenadasNodo(coordSugeridas);
 
-                if (distribucion1 == null) {
-                    return new ResponseEntity<>(new RespuestaDTO("Exitoso",
-                            juego.organizarBarco(x, y, orientacion, jugador, posBarcoLista), null),
-                            HttpStatus.OK);
-                }
-                else {
-                    return new ResponseEntity<>(new RespuestaDTO("Error",
-                            null, "Ya hay un barco en esa posicion"),
-                            HttpStatus.CONFLICT);
+                if (!validacion)  // si es false...
+                {
+                    // llamar a organizar el barco con las coordenadas sugeridas
                 }
             }
             else{
@@ -108,6 +102,7 @@ public class JuegoService {
             return new ResponseEntity<>(new RespuestaDTO("Error",
                     null,"El barco no pudo ser distribuido"), HttpStatus.CONFLICT);
         }
+        return null;
     }
 
     /*
